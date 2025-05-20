@@ -1,42 +1,45 @@
-from django.test import TestCase, Client
+import pytest
 from django.urls import reverse
 from law_firm_docs.models import Client
 import json
 
-class ClientLookupTests(TestCase):
-    def setUp(self):
-        self.client = Client()
-        # Create test client
-        self.test_client = Client.objects.create(
-            reference_number="TEST-001",
-            name="Test Client",
-            email="test@example.com"
-        )
+@pytest.fixture
+def client():
+    from django.test import Client
+    return Client()
 
-    def test_existing_client_lookup(self):
-        """Test lookup of existing client by reference number"""
-        response = self.client.get(
-            reverse('client_lookup'),
-            {'reference_number': 'TEST-001'}
-        )
-        self.assertEqual(response.status_code, 200)
-        data = json.loads(response.content)
-        self.assertEqual(data['name'], 'Test Client')
+@pytest.fixture
+def test_client():
+    return Client.objects.create(
+        reference_number="TEST-001",
+        name="Test Client",
+        email="test@example.com"
+    )
 
-    def test_new_client_lookup(self):
-        """Test lookup of non-existent client"""
-        response = self.client.get(
-            reverse('client_lookup'),
-            {'reference_number': 'NEW-001'}
-        )
-        self.assertEqual(response.status_code, 200)
-        data = json.loads(response.content)
-        self.assertFalse(data['exists'])
+def test_existing_client_lookup(client, test_client):
+    """Test lookup of existing client by reference number"""
+    response = client.get(
+        reverse('client_lookup'),
+        {'reference_number': 'TEST-001'}
+    )
+    assert response.status_code == 200
+    data = json.loads(response.content)
+    assert data['name'] == 'Test Client'
 
-    def test_invalid_reference_format(self):
-        """Test lookup with invalid reference number format"""
-        response = self.client.get(
-            reverse('client_lookup'),
-            {'reference_number': 'invalid@format'}
-        )
-        self.assertEqual(response.status_code, 400)
+def test_new_client_lookup(client):
+    """Test lookup of non-existent client"""
+    response = client.get(
+        reverse('client_lookup'),
+        {'reference_number': 'NEW-001'}
+    )
+    assert response.status_code == 200
+    data = json.loads(response.content)
+    assert not data['exists']
+
+def test_invalid_reference_format(client):
+    """Test lookup with invalid reference number format"""
+    response = client.get(
+        reverse('client_lookup'),
+        {'reference_number': 'invalid@format'}
+    )
+    assert response.status_code == 400
