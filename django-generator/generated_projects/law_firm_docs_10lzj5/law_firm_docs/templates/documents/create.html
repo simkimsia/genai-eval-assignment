@@ -50,8 +50,36 @@
             <!-- No Client Found Message (hidden by default) -->
             <div id="noClientFound" class="alert alert-warning mt-3" style="display: none;">
                 <h4>No Client Found</h4>
-                <p>No client found with the provided reference number. Please check the reference number and try again.</p>
+                <p>No client found with the provided reference number. You can create a new client below, or please check the reference number and try again.</p>
             </div>
+
+            <!-- New Client Form (hidden by default) -->
+            <div id="newClientForm" class="mt-3" style="display: none;">
+                <h4>Create New Client</h4>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="newClientName">Client Name <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="newClientName" placeholder="Enter client's full name">
+                        </div>
+                        <div class="form-group">
+                            <label for="newClientEmail">Client Email</label>
+                            <input type="email" class="form-control" id="newClientEmail" placeholder="Enter client's email">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="newClientPhone">Client Phone</label>
+                            <input type="tel" class="form-control" id="newClientPhone" placeholder="Enter client's phone number">
+                        </div>
+                        <div class="form-group">
+                            <label for="newClientAddress">Client Address</label>
+                            <textarea class="form-control" id="newClientAddress" rows="3" placeholder="Enter client's address"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="clientApiError" class="alert alert-danger mt-3" style="display: none;"></div>
         </div>
     </div>
 
@@ -117,18 +145,54 @@
 
 {% block extra_js %}
 <script>
+// State variable to track if we are in 'create client' mode
+let creatingNewClient = false;
+
+// Helper function to display API errors
+function displayClientApiError(message) {
+    const errorDiv = document.getElementById('clientApiError');
+    errorDiv.textContent = message;
+    errorDiv.style.display = 'block';
+}
+
+function hideClientApiError() {
+    document.getElementById('clientApiError').style.display = 'none';
+}
+
+function resetClientForms() {
+    document.getElementById('clientDetails').style.display = 'none';
+    document.getElementById('noClientFound').style.display = 'none';
+    document.getElementById('newClientForm').style.display = 'none';
+    document.getElementById('submitButton').disabled = true;
+    document.getElementById('submitButton').textContent = 'Create Document';
+    document.getElementById('clientId').value = '';
+    // Clear new client form fields
+    document.getElementById('newClientName').value = '';
+    document.getElementById('newClientEmail').value = '';
+    document.getElementById('newClientPhone').value = '';
+    document.getElementById('newClientAddress').value = '';
+    creatingNewClient = false;
+    hideClientApiError();
+}
+
 // Client lookup functionality
 function lookupClient() {
-    const reference = document.getElementById('clientReference').value;
+    const referenceInput = document.getElementById('clientReference');
+    const reference = referenceInput.value.trim(); // Trim whitespace
+
+    // Basic input validation for reference number format (client-side)
+    if (!referenceInput.checkValidity()) {
+        referenceInput.reportValidity();
+        return;
+    }
+
     if (!reference) {
         alert('Please enter a client reference number');
         return;
     }
 
-    // Hide all client-related sections initially
-    document.getElementById('clientDetails').style.display = 'none';
-    document.getElementById('noClientFound').style.display = 'none';
-    document.getElementById('submitButton').disabled = true;
+    // Reset UI elements before new lookup
+    resetClientForms();
 
     fetch(`/api/client-lookup/${reference}/`)
         .then(response => response.json())
@@ -146,47 +210,132 @@ function lookupClient() {
 
                 // Enable document form
                 document.getElementById('submitButton').disabled = false;
+                document.getElementById('submitButton').textContent = 'Create Document';
+                creatingNewClient = false;
             } else {
-                // Show no client found message
+                // Show no client found message and new client form
                 document.getElementById('noClientFound').style.display = 'block';
+                document.getElementById('newClientForm').style.display = 'block';
                 document.getElementById('clientId').value = '';
+                document.getElementById('submitButton').disabled = false;
+                document.getElementById('submitButton').textContent = 'Create Client & Document';
+                creatingNewClient = true;
             }
         })
         .catch(error => {
             console.error('Error:', error);
-            alert('Error looking up client');
+            displayClientApiError('Error looking up client. Please try again.');
         });
 }
 
-// Form submission
-document.getElementById('documentForm').addEventListener('submit', function(e) {
-    e.preventDefault();
+// Add event listener to clientReference input to reset forms on change
+document.getElementById('clientReference').addEventListener('input', function() {
+    // If user types after a lookup that showed new client form, reset to avoid confusion
+    if (creatingNewClient || document.getElementById('clientDetails').style.display === 'block') {
+       resetClientForms();
+    }
+});
 
-    const formData = new FormData(this);
-    const clientId = document.getElementById('clientId').value;
+// Form submission
+document.getElementById('documentForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    hideClientApiError(); // Clear previous errors
+    const submitButton = document.getElementById('submitButton');
+    submitButton.disabled = true; // Disable button during submission
+
+    const clientReference = document.getElementById('clientReference').value.trim();
+    let clientId = document.getElementById('clientId').value;
+
+    if (creatingNewClient) {
+        const newClientName = document.getElementById('newClientName').value.trim();
+        if (!newClientName) {
+            displayClientApiError('New Client Name is required.');
+            submitButton.disabled = false;
+            return;
+        }
+
+        const clientData = {
+            reference_number: clientReference,
+            name: newClientName,
+            email: document.getElementById('newClientEmail').value.trim(),
+            phone: document.getElementById('newClientPhone').value.trim(),
+            address: document.getElementById('newClientAddress').value.trim(),
+        };
+
+        try {
+            const clientResponse = await fetch('/api/create-client/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+                },
+                body: JSON.stringify(clientData)
+            });
+
+            const clientResult = await clientResponse.json();
+            if (clientResponse.ok && clientResult.success) {
+                clientId = clientResult.client_id;
+                document.getElementById('clientId').value = clientId;
+                // Optionally update UI to show new client was created, e.g., hide new client form and show details
+                document.getElementById('newClientForm').style.display = 'none';
+                document.getElementById('noClientFound').style.display = 'none';
+                document.getElementById('clientDetails').style.display = 'block';
+                document.getElementById('clientName').textContent = clientResult.client_name || newClientName;
+                document.getElementById('clientEmail').textContent = clientData.email || 'N/A';
+                document.getElementById('clientPhone').textContent = clientData.phone || 'N/A';
+                document.getElementById('clientAddress').textContent = clientData.address || 'N/A';
+
+                document.getElementById('submitButton').textContent = 'Create Document';
+                creatingNewClient = false; // Switch mode after successful client creation
+            } else {
+                let errorMessage = clientResult.error || 'Error creating client.';
+                if (clientResponse.status === 409) {
+                    errorMessage = 'A client with this reference number already exists. Please use a different reference number or lookup the existing client.';
+                }
+                displayClientApiError(errorMessage);
+                submitButton.disabled = false;
+                return;
+            }
+        } catch (error) {
+            console.error('Error creating client:', error);
+            displayClientApiError('An unexpected error occurred while creating the client. Please try again.');
+            submitButton.disabled = false;
+            return;
+        }
+    }
 
     if (!clientId) {
-        alert('Please lookup a valid client first');
+        displayClientApiError('Client ID is missing. Please ensure a client is looked up or created.');
+        submitButton.disabled = false;
         return;
     }
 
-    fetch('/api/create-document/', {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
+    const formData = new FormData(this);
+    // Ensure client_id is correctly set in formData if it was just created
+    formData.set('client_id', clientId);
+
+    try {
+        const docResponse = await fetch('/api/create-document/', {
+            method: 'POST',
+            body: formData,
+            headers: { // Important: FormData sets its own Content-Type with boundary, don't set it manually to application/json
+                'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+            }
+        });
+        const docResult = await docResponse.json();
+
+        if (docResponse.ok && docResult.success) {
             alert('Document created successfully!');
-            window.location.href = data.redirect_url;
+            window.location.href = docResult.redirect_url;
         } else {
-            alert('Error creating document: ' + data.error);
+            displayClientApiError(docResult.error || 'Error creating document.');
+            submitButton.disabled = false;
         }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        alert('Error creating document');
-    });
+    } catch (error) {
+        console.error('Error creating document:', error);
+        displayClientApiError('An unexpected error occurred while creating the document. Please try again.');
+        submitButton.disabled = false;
+    }
 });
 </script>
 {% endblock %}

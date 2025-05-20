@@ -40,19 +40,53 @@ def client_lookup(request, reference_number):
 def create_client(request):
     """API endpoint to create a new client."""
     try:
-        data = request.json
+        # Ensure request body is parsed as JSON
+        import json
+
+        try:
+            data = json.loads(request.body)
+        except json.JSONDecodeError:
+            return JsonResponse({"success": False, "error": "Invalid JSON"}, status=400)
+
+        reference_number = data.get("reference_number")
+        if not reference_number:
+            return JsonResponse(
+                {"success": False, "error": "Reference number is required"}, status=400
+            )
+
+        # Check if a client with this reference number already exists
+        if Client.objects.filter(reference_number=reference_number).exists():
+            return JsonResponse(
+                {
+                    "success": False,
+                    "error": "Client with this reference number already exists",
+                },
+                status=409,  # HTTP 409 Conflict
+            )
+
         client = Client.objects.create(
-            reference_number=data["reference_number"],
-            name=data["name"],
+            reference_number=reference_number,
+            name=data["name"],  # Assume name is required
             email=data.get("email", ""),
             phone=data.get("phone", ""),
             address=data.get("address", ""),
         )
-        return JsonResponse({"success": True, "client_id": client.id})
+        return JsonResponse(
+            {"success": True, "client_id": client.id, "client_name": client.name}
+        )
     except ValidationError as e:
-        return JsonResponse({"success": False, "error": str(e)})
-    except Exception:
-        return JsonResponse({"success": False, "error": "Error creating client"})
+        return JsonResponse({"success": False, "error": str(e)}, status=400)
+    except KeyError as e:  # Handle missing 'name' key
+        return JsonResponse(
+            {"success": False, "error": f"Missing required field: {str(e)}"}, status=400
+        )
+    except Exception:  # Catch other potential errors
+        # Log the exception for debugging
+        # import logging
+        # logging.error(f"Error creating client: {e}")
+        return JsonResponse(
+            {"success": False, "error": "Error creating client"}, status=500
+        )
 
 
 @login_required
