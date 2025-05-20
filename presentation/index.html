@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+	<html class="sl-root decks export offline loaded">
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover, minimal-ui">
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+		<link rel="manifest" href='data:application/manifest+json,{"display": "standalone", "name": "deck"}' />
+		<title>deck</title>
+
+
+		<link rel="stylesheet" type="text/css" href="lib/offline-v2.css">
+
+
+
+	</head>
+	<body class="reveal-viewport theme-font-montserrat theme-color-white-blue">
+		<div class="reveal">
+			<div class="slides">
+				<section data-id="a7009ed961cb3e3009754de1f2b24c10"><div class="sl-block" data-block-type="text" data-name="text-355ec5" data-block-id="32709d1676dde766f57e26c66e8373f8" style="height: auto; width: 960px; left: 0px; top: 204px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" data-has-custom-html="">
+                <h1>Evaluating LLMs in Real-World Development</h1>
+                <p>Beyond Traditional Benchmarks</p>
+                <p><small>Claude 3.7 vs Gemini Pro 2.5 in Cursor IDE</small></p>
+            </div></div></section><section data-id="fe8430bd842d9ddfb32a8342227ba630"><div class="sl-block" data-block-type="text" data-name="text-7f82aa" data-block-id="0415411b3eb910a976d6ef471da2b781" style="height: auto; width: 960px; left: 0px; top: 225.5px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" data-has-custom-html="">
+                <h2>Task &amp; Context</h2>
+                <ul>
+                    <li>Feature development in existing Django codebase</li>
+                    <li>Testing in Cursor IDE (real-world environment)</li>
+                    <li>Focus on contextual understanding</li>
+                    <li class="highlight">Moving beyond i.i.d. assumptions</li>
+                </ul>
+            </div></div></section><section data-id="9fad6631e3f2cd3c91a998561e218079"><div class="sl-block" data-block-type="text" data-name="text-67010a" data-block-id="59e3109ae7ec73547c623aef897bc6d9" style="height: auto; width: 960px; left: 0px; top: 80px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" data-has-custom-html="" style="z-index: 10;"></div></div>
+<div class="sl-block" data-block-type="image" data-name="image-65ad90" style="width: 734.107px; height: 700px; left: 112.947px; top: 0px;" data-block-id="7db8f837b35bfb84442b078ee58e01e0"><div class="sl-block-content" style="z-index: 11;"><img class="" data-natural-width="904" data-natural-height="862" data-src="deck/0fcbba64ccf3c899eef67463f7769486.png"></div></div></section><section data-id="c89b8a0a61c2f1257e5eb20fc58af464"><div class="sl-block" data-block-type="text" data-name="text-d86e91" data-block-id="6913fc2a1937aeb0d9d3e7c1b5631619" style="height: auto; width: 960px; left: 0px; top: 206px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" data-has-custom-html="">
+                <h2>5 Key Metrics</h2>
+                <ul>
+                    <li class="automated">Python Code Quality Delta (30%)</li>
+                    <li class="automated">Template Quality Delta (20%)</li>
+                    <li class="manual">Number of Prompts (15%)</li>
+                    <li class="manual">Explanation Clarity (15%)</li>
+                    <li class="manual">Task Efficiency (20%)</li>
+                </ul>
+            </div></div></section><section data-id="ec3fc5e79d75a6a748ae0566c7ae08b8"><div class="sl-block" data-block-type="text" data-name="text-fa457e" data-block-id="e624c308fa3f7947e85b3138e21c6dba" style="height: auto; width: 960px; left: 0px; top: 74px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" data-has-custom-html="">
+                <h2>Automated Measurements</h2>
+                <ul>
+                    <li class="automated">Python Code Quality Delta
+                        <ul class="submetric">
+                            <li>Test coverage delta (after - before)</li>
+                            <li>Pylint score delta (after - before)</li>
+                            <li>New failed tests count</li>
+                            <li>Measured by: step_01_run_tests.py, step_02_check_python_code_quality.py</li>
+                        </ul>
+                    </li>
+                    <li class="automated">Template Quality Delta
+                        <ul class="submetric">
+                            <li>Total issues delta (after - before)</li>
+                            <li>Categories: accessibility, inline styles, template tags, JavaScript, structure</li>
+                            <li>Measured by: step_03_check_template_quality.py</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div></div></section><section data-id="dea88e1870684c08317fef008051d726"><div class="sl-block" data-block-type="text" data-name="text-0d3209" data-block-id="123cdb28c6f8630ce1104a89217155fe" style="height: auto; width: 960px; left: 0px; top: 105.5px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" data-has-custom-html="">
+                <h2>Manual &amp; Subjective Metrics</h2>
+                <ul>
+                    <li class="manual">Number of Prompts (15%)
+                        <ul class="submetric">
+                            <li>Count of prompts needed to complete task</li>
+                            <li>Lower is better</li>
+                        </ul>
+                    </li>
+                    <li class="manual">Explanation Clarity (15%)
+                        <ul class="submetric">
+                            <li>LLM-as-judge evaluation (1-5 scale)</li>
+                            <li>Automated but subjective</li>
+                        </ul>
+                    </li>
+                    <li class="manual">Task Efficiency (20%)
+                        <ul class="submetric">
+                            <li>Field efficiency ratio (actual/minimum)</li>
+                            <li>Number of form submissions</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div></div></section><section data-id="8c6ce3edfe07e63a0c6f38097a87f105"><div class="sl-block" data-block-type="text" data-name="text-843c98" data-block-id="810dd711be26f722d2b17732875d5abb" style="height: auto; width: 960px; left: 0px; top: 0px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" data-has-custom-html="">
+<h2>Evaluation Results</h2>
+
+<div class="results-container">
+<div>
+<h3>Claude 3.7 Sonnet</h3>
+
+<ul class="submetric">
+	<li>Python Quality: <span style="color:#FF0000;">0/10</span>
+</li>
+	<li>Template Quality: 8.4/10</li>
+	<li>Prompt Efficiency: 9.5/10</li>
+	<li>Explanation: 8/10</li>
+	<li>Task Efficiency: 8/10</li>
+	<li class="highlight">Final: <span style="color:#008080;">6.53/10</span>
+</li>
+</ul>
+</div>
+
+<div>
+<h3>Gemini 2.5 Pro</h3>
+
+<ul class="submetric">
+	<li>Python Quality: <span style="color:#FF0000;">-2.54/10</span>
+</li>
+	<li>Template Quality: 8.8/10</li>
+	<li>Prompt Efficiency: 9.5/10</li>
+	<li>Explanation: 8/10</li>
+	<li>Task Efficiency: 9/10</li>
+	<li class="highlight">Final: <span style="color:#006400;">6.12/10</span>
+</li>
+</ul>
+</div>
+</div>
+</div></div></section><section data-id="1435449cb06291b7a5061e16999703cd"><div class="sl-block" data-block-type="text" data-name="text-fabd20" data-block-id="5881cb6ee275f34e75b3229747f76d62" style="height: auto; width: 960px; left: 0px; top: 225.5px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" data-has-custom-html="">
+<h2>Key Insights</h2>
+
+<ul>
+	<li>Context matters more than isolated tasks</li>
+	<li>Quality deltas better reflect real impact</li>
+	<li>Efficiency metrics capture developer experience</li>
+	<li class="highlight">Real-world tasks are not i.i.d.</li>
+	<li class="highlight">Scoring is hard when different metrics are involved!</li>
+</ul>
+</div></div></section><section data-id="c1adbe1a83f004328ce511f914243091"><div class="sl-block" data-block-type="text" data-name="text-0238da" data-block-id="43c304b8bc3675be095339c477b08ad0" style="height: auto; width: 960px; left: 0px; top: 264.5px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" data-has-custom-html="">
+                <h2>Thank You!</h2>
+                <p>Questions?</p>
+                <p><small>Inspired by "The Second Half of AI" by Shunyu Yao</small></p>
+            </div></div></section>
+			</div>
+		</div>
+
+		<script>
+			var SLConfig = {"deck": {"id":3403334,"slug":"deck","title":"deck","description":"","width":960,"height":700,"margin":0.05,"visibility":"all","published_at":"2025-05-19T13:26:34.913Z","sanitize_messages":null,"thumbnail_url":"https://s3.amazonaws.com/media-p.slid.es/thumbnails/6f17c4e6e7be14f54efad53071ed8591/thumb.jpg?1747735178","view_count":1,"user":{"id":2930389,"username":"kimsiasim-1","name":"KimSia Sim","description":null,"thumbnail_url":"https://lh3.googleusercontent.com/a/ACg8ocJwDnivLEN6NkY2Z74hFnvSEsdYe4OzcvtAnhNkST3NZ36iQC7T=s96-c","account_type":"lite","team_id":null,"settings":{"id":57544564,"present_controls":true,"present_upsizing":true,"present_pointer":false,"present_notes":true,"default_deck_tag_id":null}},"background_transition":"slide","transition":"slide","theme_id":null,"theme_font":"montserrat","theme_color":"white-blue","auto_slide_interval":0,"comments_enabled":true,"forking_enabled":false,"rolling_links":false,"center":false,"shuffle":null,"should_loop":false,"share_notes":null,"slide_number":null,"slide_count":9,"rtl":false,"version":2,"collaborative":null,"deck_user_editor_limit":1,"data_updated_at":1747735567962,"font_typekit":null,"font_google":null,"time_limit":null,"navigation_mode":"default","upsizing_enabled":null,"language":"en","notes":{}}};
+
+
+			// Use local fonts
+			SLConfig.fonts_url = 'lib/fonts/';
+		</script>
+
+		<script src="lib/reveal.js"></script>
+		<script src="lib/reveal-plugins.js"></script>
+		<script src="lib/offline.js"></script>
+
+		<!-- Initialize the presentation -->
+		<script>
+			Reveal.initialize({
+				width: 960,
+				height: 700,
+				margin: 0.05,
+				
+
+				hash: true,
+				controls: true,
+				progress: true,
+				mouseWheel: false,
+				showNotes: false,
+				slideNumber: false,
+				fragmentInURL: true,
+
+				autoSlide: 0,
+				autoSlideStoppable: true,
+
+				autoAnimateMatcher: SL.deck.AutoAnimate.matcher,
+
+				scrollActivationWidth: null,
+
+				center: false,
+				shuffle: false,
+				loop: false,
+				rtl: false,
+				navigationMode: "default",
+
+				transition: "slide",
+				backgroundTransition: "slide",
+
+				highlight: {
+					escapeHTML: false
+				},
+
+				plugins: [ RevealZoom, RevealNotes, RevealMarkdown, RevealHighlight ]
+			});
+		</script>
+
+		
+
+
+	</body>
+</html>
