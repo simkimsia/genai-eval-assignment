@@ -1,0 +1,466 @@
+{
+  "table_of_contents": [
+    {
+      "title": "The Second Half",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          42.1990966796875,
+          152.838623046875
+        ],
+        [
+          222.5439453125,
+          152.838623046875
+        ],
+        [
+          222.5439453125,
+          179.973388671875
+        ],
+        [
+          42.1990966796875,
+          179.973388671875
+        ]
+      ]
+    },
+    {
+      "title": "The first half",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          42.75,
+          710.8486328125
+        ],
+        [
+          152.8173828125,
+          710.8486328125
+        ],
+        [
+          152.8173828125,
+          733.0498046875
+        ],
+        [
+          42.75,
+          733.0498046875
+        ]
+      ]
+    },
+    {
+      "title": "The recipe",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          42.75,
+          193.232421875
+        ],
+        [
+          136.51792907714844,
+          193.232421875
+        ],
+        [
+          136.51792907714844,
+          215.8447265625
+        ],
+        [
+          42.75,
+          215.8447265625
+        ]
+      ]
+    },
+    {
+      "title": "",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          63.189697265625,
+          36.1282958984375
+        ],
+        [
+          317.255859375,
+          36.1282958984375
+        ],
+        [
+          317.255859375,
+          139.78515625
+        ],
+        [
+          63.189697265625,
+          139.78515625
+        ]
+      ]
+    },
+    {
+      "title": "",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          283.118896484375,
+          80.1195068359375
+        ],
+        [
+          524.111328125,
+          80.1195068359375
+        ],
+        [
+          524.111328125,
+          254.69677734375
+        ],
+        [
+          283.118896484375,
+          254.69677734375
+        ]
+      ]
+    },
+    {
+      "title": "",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          74.5928955078125,
+          252.435546875
+        ],
+        [
+          276.0009765625,
+          252.435546875
+        ],
+        [
+          276.0009765625,
+          270.525390625
+        ],
+        [
+          74.5928955078125,
+          270.525390625
+        ]
+      ]
+    },
+    {
+      "title": "The second half",
+      "heading_level": null,
+      "page_id": 5,
+      "polygon": [
+        [
+          42.75,
+          411.74951171875
+        ],
+        [
+          181.40390014648438,
+          411.74951171875
+        ],
+        [
+          181.40390014648438,
+          434.15625
+        ],
+        [
+          42.75,
+          434.15625
+        ]
+      ]
+    },
+    {
+      "title": "Acknowledgements",
+      "heading_level": null,
+      "page_id": 8,
+      "polygon": [
+        [
+          42.3443603515625,
+          68.967529296875
+        ],
+        [
+          215.90988159179688,
+          68.967529296875
+        ],
+        [
+          215.90988159179688,
+          90.44921875
+        ],
+        [
+          42.3443603515625,
+          90.44921875
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          71
+        ],
+        [
+          "Line",
+          29
+        ],
+        [
+          "Text",
+          7
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "PageHeader",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0
+      }
+    },
+    {
+      "page_id": 1,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          47
+        ],
+        [
+          "Line",
+          24
+        ],
+        [
+          "Text",
+          5
+        ],
+        [
+          "Figure",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0
+      }
+    },
+    {
+      "page_id": 2,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          44
+        ],
+        [
+          "Line",
+          21
+        ],
+        [
+          "Text",
+          5
+        ],
+        [
+          "SectionHeader",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0
+      }
+    },
+    {
+      "page_id": 3,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          39
+        ],
+        [
+          "TableCell",
+          38
+        ],
+        [
+          "Line",
+          16
+        ],
+        [
+          "Text",
+          7
+        ],
+        [
+          "SectionHeader",
+          3
+        ],
+        [
+          "TableOfContents",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0
+      }
+    },
+    {
+      "page_id": 4,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          56
+        ],
+        [
+          "Line",
+          26
+        ],
+        [
+          "Text",
+          4
+        ],
+        [
+          "Figure",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0
+      }
+    },
+    {
+      "page_id": 5,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          69
+        ],
+        [
+          "Line",
+          30
+        ],
+        [
+          "Text",
+          5
+        ],
+        [
+          "ListItem",
+          4
+        ],
+        [
+          "ListGroup",
+          2
+        ],
+        [
+          "SectionHeader",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0
+      }
+    },
+    {
+      "page_id": 6,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          65
+        ],
+        [
+          "Line",
+          25
+        ],
+        [
+          "Text",
+          7
+        ],
+        [
+          "Figure",
+          1
+        ],
+        [
+          "ListItem",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0
+      }
+    },
+    {
+      "page_id": 7,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          63
+        ],
+        [
+          "Line",
+          27
+        ],
+        [
+          "Text",
+          4
+        ],
+        [
+          "ListItem",
+          3
+        ],
+        [
+          "Figure",
+          1
+        ],
+        [
+          "ListGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0
+      }
+    },
+    {
+      "page_id": 8,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          9
+        ],
+        [
+          "Line",
+          5
+        ],
+        [
+          "Text",
+          2
+        ],
+        [
+          "SectionHeader",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0
+      }
+    }
+  ],
+  "debug_data_path": "debug_data/The Second Half \u2013 Shunyu Yao \u2013 \u59da\u987a\u96e8"
+}
