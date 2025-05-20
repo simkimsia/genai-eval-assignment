@@ -174,3 +174,37 @@ Final Score: ___/10
    - Manual evaluation
    - LLM-as-judge evaluation
    - Score calculation
+
+## Results
+
+### Claude 3.7 Sonnet
+- Python Code Quality Delta: 0/10 (30%)
+  - Coverage Delta: -12%
+  - Pylint Score Delta: -0.25
+  - New Failed Tests: 1
+- Template Quality Delta: 8.4/10 (20%)
+  - Issues Delta: +8
+- Prompt Efficiency: 9.5/10 (15%)
+  - Number of Prompts: 1
+- Explanation Clarity: 8/10 (15%)
+  - LLM-as-Judge Score: 4/5
+- Task Efficiency: 8/10 (20%)
+  - All tests passing: 4/5
+  - End-to-end working: Yes
+- Final Score: 6.53/10
+
+### Gemini 2.5 Pro
+- Python Code Quality Delta: -2.54/10 (30%)
+  - Coverage Delta: -5%
+  - Pylint Score Delta: -0.08
+  - New Failed Tests: 0
+- Template Quality Delta: 8.8/10 (20%)
+  - Issues Delta: +6
+- Prompt Efficiency: 9.5/10 (15%)
+  - Number of Prompts: 1
+- Explanation Clarity: 8/10 (15%)
+  - LLM-as-Judge Score: 4/5
+- Task Efficiency: 9/10 (20%)
+  - All tests passing: 5/5
+  - End-to-end working: Yes
+- Final Score: 6.12/10

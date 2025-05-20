@@ -18,6 +18,10 @@
         .automated { color: #27ae60; }
         .manual { color: #2980b9; }
         .submetric { font-size: 0.9em; margin-left: 20px; }
+        .results-container { display: flex; justify-content: space-around; }
+        .cursor-interface { text-align: center; }
+        .caption { font-size: 0.9em; color: #666; margin-top: 10px; }
+        .cursor-interface img { max-height: 60vh; margin: 0 auto; display: block; }
     </style>
 </head>
 <body>
@@ -41,7 +45,16 @@
                 </ul>
             </section>
 
-            <!-- Slide 3: Evaluation Framework -->
+            <!-- Slide 3: Cursor IDE Interface -->
+            <section>
+                <h2>Cursor IDE Interface</h2>
+                <div class="cursor-interface">
+                    <img src="cursor-looks-like.png" alt="Cursor IDE Interface showing LLM interaction" height="400" width="600">
+                    <p class="caption">Real-world development environment in Cursor IDE with Gemini Pro</p>
+                </div>
+            </section>
+
+            <!-- Slide 4: Evaluation Framework -->
             <section>
                 <h2>5 Key Metrics</h2>
                 <ul>
@@ -53,7 +66,7 @@
                 </ul>
             </section>
 
-            <!-- Slide 4: Automated Metrics -->
+            <!-- Slide 5: Automated Metrics -->
             <section>
                 <h2>Automated Measurements</h2>
                 <ul>
@@ -75,7 +88,7 @@
                 </ul>
             </section>
 
-            <!-- Slide 5: Manual Metrics -->
+            <!-- Slide 6: Manual Metrics -->
             <section>
                 <h2>Manual & Subjective Metrics</h2>
                 <ul>
@@ -100,7 +113,36 @@
                 </ul>
             </section>
 
-            <!-- Slide 6: Key Insights -->
+            <!-- Slide 7: Results -->
+            <section>
+                <h2>Evaluation Results</h2>
+                <div class="results-container">
+                    <div>
+                        <h3>Claude 3.7 Sonnet</h3>
+                        <ul class="submetric">
+                            <li>Python Quality: 0/10</li>
+                            <li>Template Quality: 8.4/10</li>
+                            <li>Prompt Efficiency: 9.5/10</li>
+                            <li>Explanation: 8/10</li>
+                            <li>Task Efficiency: 8/10</li>
+                            <li class="highlight">Final: 6.53/10</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3>Gemini 2.5 Pro</h3>
+                        <ul class="submetric">
+                            <li>Python Quality: -2.54/10</li>
+                            <li>Template Quality: 8.8/10</li>
+                            <li>Prompt Efficiency: 9.5/10</li>
+                            <li>Explanation: 8/10</li>
+                            <li>Task Efficiency: 9/10</li>
+                            <li class="highlight">Final: 6.12/10</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 8: Key Insights -->
             <section>
                 <h2>Key Insights</h2>
                 <ul>
@@ -111,7 +153,7 @@
                 </ul>
             </section>
 
-            <!-- Slide 7: Thank You -->
+            <!-- Slide 9: Thank You -->
             <section>
                 <h2>Thank You!</h2>
                 <p>Questions?</p>

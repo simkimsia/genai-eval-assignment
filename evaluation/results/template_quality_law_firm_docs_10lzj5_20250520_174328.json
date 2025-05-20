@@ -1,0 +1,217 @@
+{
+  "project": "law_firm_docs_10lzj5",
+  "timestamp": "20250520_174328",
+  "metrics": {
+    "total_templates": 3,
+    "total_issues": 46,
+    "accessibility": {
+      "missing_alt": 0,
+      "missing_aria": 16,
+      "color_contrast": 0,
+      "form_labels": 1
+    },
+    "inline_styles": 4,
+    "template_tags": {
+      "extends": 2,
+      "blocks": 10,
+      "includes": 0,
+      "url_tags": 1,
+      "static_tags": 0,
+      "csrf_tokens": 2,
+      "form_errors": 0,
+      "potential_xss": 0
+    },
+    "javascript": {
+      "inline_scripts": 1,
+      "event_handlers": 1,
+      "jquery_usage": 0,
+      "fetch_usage": 1,
+      "error_handling": 1
+    },
+    "structure": {
+      "block_count": 0,
+      "extends_count": 0,
+      "include_count": 0,
+      "form_count": 2,
+      "script_count": 2,
+      "nested_forms": 0,
+      "form_validation": 2
+    }
+  },
+  "template_quality": {
+    "base.html": {
+      "inline_styles": {
+        "count": 0,
+        "elements": []
+      },
+      "accessibility": {
+        "missing_alt": [],
+        "missing_aria": [
+          "<button class=\"navbar-toggler\" data-bs-target=\"#navbarNav\" data-bs-toggle=\"collapse\" type=\"button\">\n<span class=\"navbar-toggler-icon\"></span>\n</button>",
+          "<button class=\"btn btn-outline-light btn-sm\" type=\"submit\">Logout</button>"
+        ],
+        "color_contrast": [],
+        "form_labels": []
+      },
+      "django_template_tags": {
+        "extends": [],
+        "blocks": [
+          "title",
+          "extra_css",
+          "content",
+          "extra_js"
+        ],
+        "includes": [],
+        "url_tags": [
+          "logout"
+        ],
+        "static_tags": [],
+        "csrf_tokens": [
+          "{% csrf_token %}"
+        ],
+        "form_errors": [],
+        "potential_xss": []
+      },
+      "javascript": {
+        "inline_scripts": [],
+        "event_handlers": [],
+        "jquery_usage": [],
+        "fetch_usage": [],
+        "error_handling": []
+      },
+      "structure": {
+        "block_count": 0,
+        "extends_count": 0,
+        "include_count": 0,
+        "form_count": 1,
+        "script_count": 1,
+        "nested_forms": [],
+        "form_validation": [
+          "<form action=\"{% url 'logout' %}\" class=\"d-inline\" method=\"post\">\n                        {% csrf_token %}\n                        <button class=\"btn btn-outline-light btn-sm\" type=\"submit\">Logout</button>\n</form>"
+        ]
+      }
+    },
+    "create.html": {
+      "inline_styles": {
+        "count": 4,
+        "elements": [
+          "<div class=\"mt-3\" id=\"clientDetails\" style=\"display: none;\">\n<h4>Client Details</h4>\n<div class=\"row\">\n<div class=\"col-md-6\">\n<p><strong>Name:</strong> <span id=\"clientName\"></span></p>\n<p><strong>Email:</strong> <span id=\"clientEmail\"></span></p>\n</div>\n<div class=\"col-md-6\">\n<p><strong>Phone:</strong> <span id=\"clientPhone\"></span></p>\n<p><strong>Address:</strong> <span id=\"clientAddress\"></span></p>\n</div>\n</div>\n</div>",
+          "<div class=\"alert alert-warning mt-3\" id=\"noClientFound\" style=\"display: none;\">\n<h4>No Client Found</h4>\n<p>No client found with the provided reference number. You can create a new client below, or please check the reference number and try again.</p>\n</div>",
+          "<div class=\"mt-3\" id=\"newClientForm\" style=\"display: none;\">\n<h4>Create New Client</h4>\n<div class=\"row\">\n<div class=\"col-md-6\">\n<div class=\"form-group\">\n<label for=\"newClientName\">Client Name <span class=\"text-danger\">*</span></label>\n<input class=\"form-control\" id=\"newClientName\" placeholder=\"Enter client's full name\" type=\"text\"/>\n</div>\n<div class=\"form-group\">\n<label for=\"newClientEmail\">Client Email</label>\n<input class=\"form-control\" id=\"newClientEmail\" placeholder=\"Enter client's email\" type=\"email\"/>\n</div>\n</div>\n<div class=\"col-md-6\">\n<div class=\"form-group\">\n<label for=\"newClientPhone\">Client Phone</label>\n<input class=\"form-control\" id=\"newClientPhone\" placeholder=\"Enter client's phone number\" type=\"tel\"/>\n</div>\n<div class=\"form-group\">\n<label for=\"newClientAddress\">Client Address</label>\n<textarea class=\"form-control\" id=\"newClientAddress\" placeholder=\"Enter client's address\" rows=\"3\"></textarea>\n</div>\n</div>\n</div>\n</div>",
+          "<div class=\"alert alert-danger mt-3\" id=\"clientApiError\" style=\"display: none;\"></div>"
+        ]
+      },
+      "accessibility": {
+        "missing_alt": [],
+        "missing_aria": [
+          "<input class=\"form-control\" id=\"clientReference\" pattern=\"[A-Z0-9-]+\" placeholder=\"Enter client reference number\" required=\"\" title=\"Only uppercase letters, numbers, and hyphens allowed\" type=\"text\"/>",
+          "<button class=\"btn btn-primary\" onclick=\"lookupClient()\" type=\"button\">Lookup</button>",
+          "<input class=\"form-control\" id=\"newClientName\" placeholder=\"Enter client's full name\" type=\"text\"/>",
+          "<input class=\"form-control\" id=\"newClientEmail\" placeholder=\"Enter client's email\" type=\"email\"/>",
+          "<input class=\"form-control\" id=\"newClientPhone\" placeholder=\"Enter client's phone number\" type=\"tel\"/>",
+          "<textarea class=\"form-control\" id=\"newClientAddress\" placeholder=\"Enter client's address\" rows=\"3\"></textarea>",
+          "<input id=\"clientId\" name=\"client_id\" type=\"hidden\"/>",
+          "<input class=\"form-control\" id=\"documentTitle\" name=\"title\" required=\"\" type=\"text\"/>",
+          "<select class=\"form-control\" id=\"documentType\" name=\"document_type\" required=\"\">\n<option value=\"\">Select a type</option>\n<option value=\"contract\">Contract</option>\n<option value=\"agreement\">Agreement</option>\n<option value=\"letter\">Letter</option>\n<option value=\"report\">Report</option>\n<option value=\"memo\">Memo</option>\n<option value=\"other\">Other</option>\n</select>",
+          "<input class=\"form-control\" id=\"documentFile\" name=\"file\" required=\"\" type=\"file\"/>",
+          "<textarea class=\"form-control\" id=\"documentDescription\" name=\"description\" rows=\"3\"></textarea>",
+          "<input class=\"form-check-input\" id=\"isConfidential\" name=\"is_confidential\" type=\"checkbox\"/>",
+          "<input class=\"form-control\" id=\"documentTags\" name=\"tags\" placeholder=\"e.g., contract, legal, important\" type=\"text\"/>",
+          "<button class=\"btn btn-primary\" disabled=\"\" id=\"submitButton\" type=\"submit\">Create Document</button>"
+        ],
+        "color_contrast": [],
+        "form_labels": [
+          "<input id=\"clientId\" name=\"client_id\" type=\"hidden\"/>"
+        ]
+      },
+      "django_template_tags": {
+        "extends": [
+          "base.html"
+        ],
+        "blocks": [
+          "title",
+          "content",
+          "extra_js"
+        ],
+        "includes": [],
+        "url_tags": [],
+        "static_tags": [],
+        "csrf_tokens": [
+          "{% csrf_token %}"
+        ],
+        "form_errors": [],
+        "potential_xss": []
+      },
+      "javascript": {
+        "inline_scripts": [
+          "<script>\n// State variable to track if we are in 'create client' mode\nlet creatingNewClient = false;\n\n// Helper function to display API errors\nfunction displayClientApiError(message) {\n    const errorDiv = document.getElementById('clientApiError');\n    errorDiv.textContent = message;\n    errorDiv.style.display = 'block';\n}\n\nfunction hideClientApiError() {\n    document.getElementById('clientApiError').style.display = 'none';\n}\n\nfunction resetClientForms() {\n    document.getElementById('clientDetails').style.display = 'none';\n    document.getElementById('noClientFound').style.display = 'none';\n    document.getElementById('newClientForm').style.display = 'none';\n    document.getElementById('submitButton').disabled = true;\n    document.getElementById('submitButton').textContent = 'Create Document';\n    document.getElementById('clientId').value = '';\n    // Clear new client form fields\n    document.getElementById('newClientName').value = '';\n    document.getElementById('newClientEmail').value = '';\n    document.getElementById('newClientPhone').value = '';\n    document.getElementById('newClientAddress').value = '';\n    creatingNewClient = false;\n    hideClientApiError();\n}\n\n// Client lookup functionality\nfunction lookupClient() {\n    const referenceInput = document.getElementById('clientReference');\n    const reference = referenceInput.value.trim(); // Trim whitespace\n\n    // Basic input validation for reference number format (client-side)\n    if (!referenceInput.checkValidity()) {\n        referenceInput.reportValidity();\n        return;\n    }\n\n    if (!reference) {\n        alert('Please enter a client reference number');\n        return;\n    }\n\n    // Reset UI elements before new lookup\n    resetClientForms();\n\n    fetch(`/api/client-lookup/${reference}/`)\n        .then(response => response.json())\n        .then(data => {\n            if (data.exists) {\n                // Show existing client details\n                document.getElementById('clientDetails').style.display = 'block';\n                document.getElementById('clientId').value = data.client.id;\n\n                // Populate client details\n                document.getElementById('clientName').textContent = data.client.name;\n                document.getElementById('clientEmail').textContent = data.client.email || 'N/A';\n                document.getElementById('clientPhone').textContent = data.client.phone || 'N/A';\n                document.getElementById('clientAddress').textContent = data.client.address || 'N/A';\n\n                // Enable document form\n                document.getElementById('submitButton').disabled = false;\n                document.getElementById('submitButton').textContent = 'Create Document';\n                creatingNewClient = false;\n            } else {\n                // Show no client found message and new client form\n                document.getElementById('noClientFound').style.display = 'block';\n                document.getElementById('newClientForm').style.display = 'block';\n                document.getElementById('clientId').value = '';\n                document.getElementById('submitButton').disabled = false;\n                document.getElementById('submitButton').textContent = 'Create Client & Document';\n                creatingNewClient = true;\n            }\n        })\n        .catch(error => {\n            console.error('Error:', error);\n            displayClientApiError('Error looking up client. Please try again.');\n        });\n}\n\n// Add event listener to clientReference input to reset forms on change\ndocument.getElementById('clientReference').addEventListener('input', function() {\n    // If user types after a lookup that showed new client form, reset to avoid confusion\n    if (creatingNewClient || document.getElementById('clientDetails').style.display === 'block') {\n       resetClientForms();\n    }\n});\n\n// Form submission\ndocument.getElementById('documentForm').addEventListener('submit', async function(e) {\n    e.preventDefault();\n    hideClientApiError(); // Clear previous errors\n    const submitButton = document.getElementById('submitButton');\n    submitButton.disabled = true; // Disable button during submission\n\n    const clientReference = document.getElementById('clientReference').value.trim();\n    let clientId = document.getElementById('clientId').value;\n\n    if (creatingNewClient) {\n        const newClientName = document.getElementById('newClientName').value.trim();\n        if (!newClientName) {\n            displayClientApiError('New Client Name is required.');\n            submitButton.disabled = false;\n            return;\n        }\n\n        const clientData = {\n            reference_number: clientReference,\n            name: newClientName,\n            email: document.getElementById('newClientEmail').value.trim(),\n            phone: document.getElementById('newClientPhone').value.trim(),\n            address: document.getElementById('newClientAddress').value.trim(),\n        };\n\n        try {\n            const clientResponse = await fetch('/api/create-client/', {\n                method: 'POST',\n                headers: {\n                    'Content-Type': 'application/json',\n                    'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value\n                },\n                body: JSON.stringify(clientData)\n            });\n\n            const clientResult = await clientResponse.json();\n            if (clientResponse.ok && clientResult.success) {\n                clientId = clientResult.client_id;\n                document.getElementById('clientId').value = clientId;\n                // Optionally update UI to show new client was created, e.g., hide new client form and show details\n                document.getElementById('newClientForm').style.display = 'none';\n                document.getElementById('noClientFound').style.display = 'none';\n                document.getElementById('clientDetails').style.display = 'block';\n                document.getElementById('clientName').textContent = clientResult.client_name || newClientName;\n                document.getElementById('clientEmail').textContent = clientData.email || 'N/A';\n                document.getElementById('clientPhone').textContent = clientData.phone || 'N/A';\n                document.getElementById('clientAddress').textContent = clientData.address || 'N/A';\n\n                document.getElementById('submitButton').textContent = 'Create Document';\n                creatingNewClient = false; // Switch mode after successful client creation\n            } else {\n                let errorMessage = clientResult.error || 'Error creating client.';\n                if (clientResponse.status === 409) {\n                    errorMessage = 'A client with this reference number already exists. Please use a different reference number or lookup the existing client.';\n                }\n                displayClientApiError(errorMessage);\n                submitButton.disabled = false;\n                return;\n            }\n        } catch (error) {\n            console.error('Error creating client:', error);\n            displayClientApiError('An unexpected error occurred while creating the client. Please try again.');\n            submitButton.disabled = false;\n            return;\n        }\n    }\n\n    if (!clientId) {\n        displayClientApiError('Client ID is missing. Please ensure a client is looked up or created.');\n        submitButton.disabled = false;\n        return;\n    }\n\n    const formData = new FormData(this);\n    // Ensure client_id is correctly set in formData if it was just created\n    formData.set('client_id', clientId);\n\n    try {\n        const docResponse = await fetch('/api/create-document/', {\n            method: 'POST',\n            body: formData,\n            headers: { // Important: FormData sets its own Content-Type with boundary, don't set it manually to application/json\n                'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value\n            }\n        });\n        const docResult = await docResponse.json();\n\n        if (docResponse.ok && docResult.success) {\n            alert('Document created successfully!');\n            window.location.href = docResult.redirect_url;\n        } else {\n            displayClientApiError(docResult.error || 'Error creating document.');\n            submitButton.disabled = false;\n        }\n    } catch (error) {\n        console.error('Error creating document:', error);\n        displayClientApiError('An unexpected error occurred while creating the document. Please try again.');\n        submitButton.disabled = false;\n    }\n});\n</script>"
+        ],
+        "event_handlers": [
+          "button[onclick]"
+        ],
+        "jquery_usage": [],
+        "fetch_usage": [
+          "<script>\n// State variable to track if we are in 'create client' mode\nlet creatingNewClient = false;\n\n// Helper function to display API errors\nfunction displayClientApiError(message) {\n    const errorDiv = document.getElementById('clientApiError');\n    errorDiv.textContent = message;\n    errorDiv.style.display = 'block';\n}\n\nfunction hideClientApiError() {\n    document.getElementById('clientApiError').style.display = 'none';\n}\n\nfunction resetClientForms() {\n    document.getElementById('clientDetails').style.display = 'none';\n    document.getElementById('noClientFound').style.display = 'none';\n    document.getElementById('newClientForm').style.display = 'none';\n    document.getElementById('submitButton').disabled = true;\n    document.getElementById('submitButton').textContent = 'Create Document';\n    document.getElementById('clientId').value = '';\n    // Clear new client form fields\n    document.getElementById('newClientName').value = '';\n    document.getElementById('newClientEmail').value = '';\n    document.getElementById('newClientPhone').value = '';\n    document.getElementById('newClientAddress').value = '';\n    creatingNewClient = false;\n    hideClientApiError();\n}\n\n// Client lookup functionality\nfunction lookupClient() {\n    const referenceInput = document.getElementById('clientReference');\n    const reference = referenceInput.value.trim(); // Trim whitespace\n\n    // Basic input validation for reference number format (client-side)\n    if (!referenceInput.checkValidity()) {\n        referenceInput.reportValidity();\n        return;\n    }\n\n    if (!reference) {\n        alert('Please enter a client reference number');\n        return;\n    }\n\n    // Reset UI elements before new lookup\n    resetClientForms();\n\n    fetch(`/api/client-lookup/${reference}/`)\n        .then(response => response.json())\n        .then(data => {\n            if (data.exists) {\n                // Show existing client details\n                document.getElementById('clientDetails').style.display = 'block';\n                document.getElementById('clientId').value = data.client.id;\n\n                // Populate client details\n                document.getElementById('clientName').textContent = data.client.name;\n                document.getElementById('clientEmail').textContent = data.client.email || 'N/A';\n                document.getElementById('clientPhone').textContent = data.client.phone || 'N/A';\n                document.getElementById('clientAddress').textContent = data.client.address || 'N/A';\n\n                // Enable document form\n                document.getElementById('submitButton').disabled = false;\n                document.getElementById('submitButton').textContent = 'Create Document';\n                creatingNewClient = false;\n            } else {\n                // Show no client found message and new client form\n                document.getElementById('noClientFound').style.display = 'block';\n                document.getElementById('newClientForm').style.display = 'block';\n                document.getElementById('clientId').value = '';\n                document.getElementById('submitButton').disabled = false;\n                document.getElementById('submitButton').textContent = 'Create Client & Document';\n                creatingNewClient = true;\n            }\n        })\n        .catch(error => {\n            console.error('Error:', error);\n            displayClientApiError('Error looking up client. Please try again.');\n        });\n}\n\n// Add event listener to clientReference input to reset forms on change\ndocument.getElementById('clientReference').addEventListener('input', function() {\n    // If user types after a lookup that showed new client form, reset to avoid confusion\n    if (creatingNewClient || document.getElementById('clientDetails').style.display === 'block') {\n       resetClientForms();\n    }\n});\n\n// Form submission\ndocument.getElementById('documentForm').addEventListener('submit', async function(e) {\n    e.preventDefault();\n    hideClientApiError(); // Clear previous errors\n    const submitButton = document.getElementById('submitButton');\n    submitButton.disabled = true; // Disable button during submission\n\n    const clientReference = document.getElementById('clientReference').value.trim();\n    let clientId = document.getElementById('clientId').value;\n\n    if (creatingNewClient) {\n        const newClientName = document.getElementById('newClientName').value.trim();\n        if (!newClientName) {\n            displayClientApiError('New Client Name is required.');\n            submitButton.disabled = false;\n            return;\n        }\n\n        const clientData = {\n            reference_number: clientReference,\n            name: newClientName,\n            email: document.getElementById('newClientEmail').value.trim(),\n            phone: document.getElementById('newClientPhone').value.trim(),\n            address: document.getElementById('newClientAddress').value.trim(),\n        };\n\n        try {\n            const clientResponse = await fetch('/api/create-client/', {\n                method: 'POST',\n                headers: {\n                    'Content-Type': 'application/json',\n                    'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value\n                },\n                body: JSON.stringify(clientData)\n            });\n\n            const clientResult = await clientResponse.json();\n            if (clientResponse.ok && clientResult.success) {\n                clientId = clientResult.client_id;\n                document.getElementById('clientId').value = clientId;\n                // Optionally update UI to show new client was created, e.g., hide new client form and show details\n                document.getElementById('newClientForm').style.display = 'none';\n                document.getElementById('noClientFound').style.display = 'none';\n                document.getElementById('clientDetails').style.display = 'block';\n                document.getElementById('clientName').textContent = clientResult.client_name || newClientName;\n                document.getElementById('clientEmail').textContent = clientData.email || 'N/A';\n                document.getElementById('clientPhone').textContent = clientData.phone || 'N/A';\n                document.getElementById('clientAddress').textContent = clientData.address || 'N/A';\n\n                document.getElementById('submitButton').textContent = 'Create Document';\n                creatingNewClient = false; // Switch mode after successful client creation\n            } else {\n                let errorMessage = clientResult.error || 'Error creating client.';\n                if (clientResponse.status === 409) {\n                    errorMessage = 'A client with this reference number already exists. Please use a different reference number or lookup the existing client.';\n                }\n                displayClientApiError(errorMessage);\n                submitButton.disabled = false;\n                return;\n            }\n        } catch (error) {\n            console.error('Error creating client:', error);\n            displayClientApiError('An unexpected error occurred while creating the client. Please try again.');\n            submitButton.disabled = false;\n            return;\n        }\n    }\n\n    if (!clientId) {\n        displayClientApiError('Client ID is missing. Please ensure a client is looked up or created.');\n        submitButton.disabled = false;\n        return;\n    }\n\n    const formData = new FormData(this);\n    // Ensure client_id is correctly set in formData if it was just created\n    formData.set('client_id', clientId);\n\n    try {\n        const docResponse = await fetch('/api/create-document/', {\n            method: 'POST',\n            body: formData,\n            headers: { // Important: FormData sets its own Content-Type with boundary, don't set it manually to application/json\n                'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value\n            }\n        });\n        const docResult = await docResponse.json();\n\n        if (docResponse.ok && docResult.success) {\n            alert('Document created successfully!');\n            window.location.href = docResult.redirect_url;\n        } else {\n            displayClientApiError(docResult.error || 'Error creating document.');\n            submitButton.disabled = false;\n        }\n    } catch (error) {\n        console.error('Error creating document:', error);\n        displayClientApiError('An unexpected error occurred while creating the document. Please try again.');\n        submitButton.disabled = false;\n    }\n});\n</script>"
+        ],
+        "error_handling": [
+          "fetch(`/api/client-lookup/${reference}/`)"
+        ]
+      },
+      "structure": {
+        "block_count": 0,
+        "extends_count": 0,
+        "include_count": 0,
+        "form_count": 1,
+        "script_count": 1,
+        "nested_forms": [],
+        "form_validation": [
+          "<form enctype=\"multipart/form-data\" id=\"documentForm\" method=\"post\">\n                {% csrf_token %}\n                <input id=\"clientId\" name=\"client_id\" type=\"hidden\"/>\n<div class=\"row\">\n<div class=\"col-md-6\">\n<div class=\"form-group\">\n<label for=\"documentTitle\">Title</label>\n<input class=\"form-control\" id=\"documentTitle\" name=\"title\" required=\"\" type=\"text\"/>\n</div>\n<div class=\"form-group\">\n<label for=\"documentType\">Document Type</label>\n<select class=\"form-control\" id=\"documentType\" name=\"document_type\" required=\"\">\n<option value=\"\">Select a type</option>\n<option value=\"contract\">Contract</option>\n<option value=\"agreement\">Agreement</option>\n<option value=\"letter\">Letter</option>\n<option value=\"report\">Report</option>\n<option value=\"memo\">Memo</option>\n<option value=\"other\">Other</option>\n</select>\n</div>\n</div>\n<div class=\"col-md-6\">\n<div class=\"form-group\">\n<label for=\"documentFile\">File</label>\n<input class=\"form-control\" id=\"documentFile\" name=\"file\" required=\"\" type=\"file\"/>\n</div>\n<div class=\"form-group\">\n<label for=\"documentDescription\">Description</label>\n<textarea class=\"form-control\" id=\"documentDescription\" name=\"description\" rows=\"3\"></textarea>\n</div>\n</div>\n</div>\n<div class=\"form-group\">\n<div class=\"form-check\">\n<input class=\"form-check-input\" id=\"isConfidential\" name=\"is_confidential\" type=\"checkbox\"/>\n<label class=\"form-check-label\" for=\"isConfidential\">Mark as Confidential</label>\n</div>\n</div>\n<div class=\"form-group\">\n<label for=\"documentTags\">Tags (comma-separated)</label>\n<input class=\"form-control\" id=\"documentTags\" name=\"tags\" placeholder=\"e.g., contract, legal, important\" type=\"text\"/>\n</div>\n<button class=\"btn btn-primary\" disabled=\"\" id=\"submitButton\" type=\"submit\">Create Document</button>\n</form>"
+        ]
+      }
+    },
+    "view.html": {
+      "inline_styles": {
+        "count": 0,
+        "elements": []
+      },
+      "accessibility": {
+        "missing_alt": [],
+        "missing_aria": [],
+        "color_contrast": [],
+        "form_labels": []
+      },
+      "django_template_tags": {
+        "extends": [
+          "base.html"
+        ],
+        "blocks": [
+          "title",
+          "content",
+          "extra_css"
+        ],
+        "includes": [],
+        "url_tags": [],
+        "static_tags": [],
+        "csrf_tokens": [],
+        "form_errors": [],
+        "potential_xss": []
+      },
+      "javascript": {
+        "inline_scripts": [],
+        "event_handlers": [],
+        "jquery_usage": [],
+        "fetch_usage": [],
+        "error_handling": []
+      },
+      "structure": {
+        "block_count": 0,
+        "extends_count": 0,
+        "include_count": 0,
+        "form_count": 0,
+        "script_count": 0,
+        "nested_forms": [],
+        "form_validation": []
+      }
+    }
+  }
+}
