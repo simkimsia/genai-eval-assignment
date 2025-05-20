@@ -62,13 +62,29 @@ def create_document_api(request):
     try:
         client_id = request.POST.get("client_id")
         if not client_id:
-            return JsonResponse({"success": False, "error": "Client ID is required"})
+            return JsonResponse(
+                {"success": False, "error": "Client ID is required"}, status=400
+            )
 
         client = Client.objects.get(id=client_id)
+
+        # Validate required fields
+        title = request.POST.get("title")
+        if not title:
+            return JsonResponse(
+                {"success": False, "error": "Document title is required"}, status=400
+            )
+
+        document_type = request.POST.get("document_type")
+        if not document_type:
+            return JsonResponse(
+                {"success": False, "error": "Document type is required"}, status=400
+            )
+
         document = Document.objects.create(
             client=client,
-            title=request.POST.get("title"),
-            document_type=request.POST.get("document_type"),
+            title=title,
+            document_type=document_type,
             file=request.FILES.get("file"),
             description=request.POST.get("description", ""),
             is_confidential=request.POST.get("is_confidential") == "on",
@@ -83,9 +99,11 @@ def create_document_api(request):
             }
         )
     except Client.DoesNotExist:
-        return JsonResponse({"success": False, "error": "Client not found"})
+        return JsonResponse({"success": False, "error": "Client not found"}, status=400)
     except Exception:
-        return JsonResponse({"success": False, "error": "Error creating document"})
+        return JsonResponse(
+            {"success": False, "error": "Error creating document"}, status=400
+        )
 
 
 @login_required

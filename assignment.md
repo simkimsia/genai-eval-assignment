@@ -57,5 +57,7 @@ This is actually a better approach because:
 2. It allows for better contextual understanding - the LLMs can see the existing codebase
 3. It's more practical - I can directly see how the LLMs handle real coding tasks.
 
+The one project codebase is `law_firm_docs_10lzj5`
+
 ## Project Structure Explained
 
