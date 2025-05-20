@@ -5,7 +5,7 @@
             "name": "Unified Client-Document Creation Form",
             "description": "Enhance the document creation form to allow creating new clients and documents in a single interface",
             "project": "law_firm_docs_10lzj5",
-            "prompt_template": "if you look at @create.html  it first requires the customer reference number, but i want a situation where the user can create a new client based on the reference number and fill in other related client related info and  create the document all in one template.\n\nPlease try to maximize the UI/UX experience.\n\nTry to minimize the chances where the user accidentally create a new client but the client id already exists.",
+            "prompt_template": "If you look at @create.html and @views.py, it first requires the customer reference number, but i want a situation where the user can create a new client based on the reference number and fill in other related client related info and  create the document all in one template.\n\nPlease try to maximize the UI/UX experience.\n\nTry to minimize the chances where the user accidentally create a new client but the client id already exists.",
             "evaluation_criteria": {
                 "python_code_quality": {
                     "test_coverage": "Test coverage delta (after - before)",
