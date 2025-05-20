@@ -12,6 +12,11 @@ urlpatterns = [
         views.client_lookup,
         name="client_lookup",
     ),
+    path(
+        "api/check-duplicate-client/",
+        views.check_duplicate_client,
+        name="check_duplicate_client",
+    ),
     path("api/create-client/", views.create_client, name="create_client"),
     path("api/create-document/", views.create_document_api, name="create_document_api"),
 ]

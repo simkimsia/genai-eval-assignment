@@ -35,6 +35,9 @@
             <!-- Client Details (hidden by default) -->
             <div id="clientDetails" class="mt-3" style="display: none;">
                 <h4>Client Details</h4>
+                <div class="alert alert-success">
+                    <i class="fas fa-check-circle"></i> Client found! The following information will be used for this document.
+                </div>
                 <div class="row">
                     <div class="col-md-6">
                         <p><strong>Name:</strong> <span id="clientName"></span></p>
@@ -47,10 +50,37 @@
                 </div>
             </div>
 
-            <!-- No Client Found Message (hidden by default) -->
-            <div id="noClientFound" class="alert alert-warning mt-3" style="display: none;">
-                <h4>No Client Found</h4>
-                <p>No client found with the provided reference number. Please check the reference number and try again.</p>
+            <!-- New Client Form (hidden by default) -->
+            <div id="newClientForm" class="mt-3" style="display: none;">
+                <h4>New Client Information</h4>
+                <div class="alert alert-info">
+                    <i class="fas fa-info-circle"></i> No client found with this reference number. Please provide client details below.
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="newClientName">Client Name <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="newClientName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="newClientEmail">Email</label>
+                            <input type="email" class="form-control" id="newClientEmail">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="newClientPhone">Phone</label>
+                            <input type="tel" class="form-control" id="newClientPhone">
+                        </div>
+                        <div class="form-group">
+                            <label for="newClientAddress">Address</label>
+                            <textarea class="form-control" id="newClientAddress" rows="2"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="alert alert-warning" id="duplicateWarning" style="display: none;">
+                    <i class="fas fa-exclamation-triangle"></i> Warning: A client with a similar name already exists. Please verify this is a new client.
+                </div>
             </div>
         </div>
     </div>
@@ -64,15 +94,16 @@
             <form id="documentForm" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 <input type="hidden" id="clientId" name="client_id">
+                <input type="hidden" id="isNewClient" name="is_new_client" value="false">
 
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="documentTitle">Title</label>
+                            <label for="documentTitle">Title <span class="text-danger">*</span></label>
                             <input type="text" class="form-control" id="documentTitle" name="title" required>
                         </div>
                         <div class="form-group">
-                            <label for="documentType">Document Type</label>
+                            <label for="documentType">Document Type <span class="text-danger">*</span></label>
                             <select class="form-control" id="documentType" name="document_type" required>
                                 <option value="">Select a type</option>
                                 <option value="contract">Contract</option>
@@ -86,7 +117,7 @@
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="documentFile">File</label>
+                            <label for="documentFile">File <span class="text-danger">*</span></label>
                             <input type="file" class="form-control" id="documentFile" name="file" required>
                         </div>
                         <div class="form-group">
@@ -119,15 +150,23 @@
 <script>
 // Client lookup functionality
 function lookupClient() {
-    const reference = document.getElementById('clientReference').value;
+    const reference = document.getElementById('clientReference').value.trim();
     if (!reference) {
         alert('Please enter a client reference number');
         return;
     }
 
+    // Validate reference number format
+    const referencePattern = /^[A-Z0-9-]+$/;
+    if (!referencePattern.test(reference)) {
+        alert('Reference number must contain only uppercase letters, numbers, and hyphens');
+        return;
+    }
+
     // Hide all client-related sections initially
     document.getElementById('clientDetails').style.display = 'none';
-    document.getElementById('noClientFound').style.display = 'none';
+    document.getElementById('newClientForm').style.display = 'none';
+    document.getElementById('duplicateWarning').style.display = 'none';
     document.getElementById('submitButton').disabled = true;
 
     fetch(`/api/client-lookup/${reference}/`)
@@ -137,6 +176,7 @@ function lookupClient() {
                 // Show existing client details
                 document.getElementById('clientDetails').style.display = 'block';
                 document.getElementById('clientId').value = data.client.id;
+                document.getElementById('isNewClient').value = "false";
 
                 // Populate client details
                 document.getElementById('clientName').textContent = data.client.name;
@@ -147,9 +187,18 @@ function lookupClient() {
                 // Enable document form
                 document.getElementById('submitButton').disabled = false;
             } else {
-                // Show no client found message
-                document.getElementById('noClientFound').style.display = 'block';
+                // Show new client form
+                document.getElementById('newClientForm').style.display = 'block';
+                document.getElementById('isNewClient').value = "true";
                 document.getElementById('clientId').value = '';
+
+                // Check for similar clients if data provides this info
+                if (data.similar_clients && data.similar_clients.length > 0) {
+                    document.getElementById('duplicateWarning').style.display = 'block';
+                }
+
+                // Enable document form for new client
+                document.getElementById('submitButton').disabled = false;
             }
         })
         .catch(error => {
@@ -158,17 +207,59 @@ function lookupClient() {
         });
 }
 
+// Check for potential duplicate clients when name is entered
+document.getElementById('newClientName').addEventListener('blur', function() {
+    const name = this.value.trim();
+    if (name) {
+        fetch(`/api/check-duplicate-client/?name=${encodeURIComponent(name)}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.duplicate_found) {
+                    document.getElementById('duplicateWarning').style.display = 'block';
+                } else {
+                    document.getElementById('duplicateWarning').style.display = 'none';
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    }
+});
+
 // Form submission
 document.getElementById('documentForm').addEventListener('submit', function(e) {
     e.preventDefault();
 
-    const formData = new FormData(this);
-    const clientId = document.getElementById('clientId').value;
+    const isNewClient = document.getElementById('isNewClient').value === "true";
+    const clientReference = document.getElementById('clientReference').value.trim();
 
-    if (!clientId) {
-        alert('Please lookup a valid client first');
+    if (!clientReference) {
+        alert('Please enter a client reference number');
         return;
     }
+
+    const formData = new FormData(this);
+    formData.append('reference_number', clientReference);
+
+    // Add new client information if creating a new client
+    if (isNewClient) {
+        const clientName = document.getElementById('newClientName').value.trim();
+        if (!clientName) {
+            alert('Please enter client name');
+            return;
+        }
+
+        formData.append('client_name', clientName);
+        formData.append('client_email', document.getElementById('newClientEmail').value.trim());
+        formData.append('client_phone', document.getElementById('newClientPhone').value.trim());
+        formData.append('client_address', document.getElementById('newClientAddress').value.trim());
+    }
+
+    // Show loading state
+    const submitButton = document.getElementById('submitButton');
+    const originalButtonText = submitButton.textContent;
+    submitButton.disabled = true;
+    submitButton.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Creating...';
 
     fetch('/api/create-document/', {
         method: 'POST',
@@ -177,15 +268,20 @@ document.getElementById('documentForm').addEventListener('submit', function(e) {
     .then(response => response.json())
     .then(data => {
         if (data.success) {
-            alert('Document created successfully!');
             window.location.href = data.redirect_url;
         } else {
-            alert('Error creating document: ' + data.error);
+            alert('Error: ' + data.error);
+            // Reset button state
+            submitButton.disabled = false;
+            submitButton.textContent = originalButtonText;
         }
     })
     .catch(error => {
         console.error('Error:', error);
         alert('Error creating document');
+        // Reset button state
+        submitButton.disabled = false;
+        submitButton.textContent = originalButtonText;
     });
 });
 </script>
