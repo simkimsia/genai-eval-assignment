@@ -7,25 +7,60 @@
             "project": "law_firm_docs_10lzj5",
             "prompt_template": "if you look at@create.html  it first requires the customer reference number, but i want a situation where the user can create a new client based on the reference number and fill in other related client related info and  create the document all in one template.\n\nPlease try to maximize the UI/UX experience.\n\nTry to minimize the chances where the user accidentally create a new client but the client id already exists.",
             "evaluation_criteria": {
-                "functionality": {
-                    "client_lookup": "Smart client lookup by reference number",
-                    "form_adaptation": "Dynamic form that adapts to new/existing client",
-                    "unified_submission": "Single form submission for client+document creation",
-                    "validation": "Client reference uniqueness validation",
-                    "document_management": "Document metadata management and file upload with preview"
+                "python_code_quality": {
+                    "test_coverage": "Test coverage delta (after - before)",
+                    "pylint_score": "Pylint score delta (after - before)",
+                    "test_failures": "Number of new failed tests",
+                    "code_organization": "Code structure and maintainability",
+                    "error_handling": "Robust error handling implementation"
                 },
-                "ui_ux": {
-                    "form_layout": "Clean and intuitive form layout",
-                    "validation_feedback": "Clear validation feedback",
-                    "error_handling": "User-friendly error messages",
-                    "state_preservation": "Form state preservation on validation errors",
-                    "notifications": "Clear success/error notifications"
+                "template_quality": {
+                    "accessibility": "Accessibility compliance",
+                    "inline_styles": "Proper style management",
+                    "template_tags": "Efficient template tag usage",
+                    "javascript": "JavaScript code quality",
+                    "structure": "Template structure and organization"
                 },
-                "code_quality": {
-                    "test_coverage": "Comprehensive test coverage",
-                    "error_handling": "Robust error handling",
-                    "code_organization": "Well-organized and maintainable code",
-                    "security": "Proper security measures"
+                "prompt_efficiency": {
+                    "prompt_count": "Number of prompts needed",
+                    "context_understanding": "Context retention across prompts",
+                    "solution_progression": "Logical solution development"
+                },
+                "explanation_clarity": {
+                    "code_explanation": "Quality of code explanations",
+                    "design_decisions": "Clarity of design decisions",
+                    "implementation_steps": "Clear implementation steps"
+                },
+                "task_efficiency": {
+                    "field_efficiency": "Field efficiency ratio (actual/minimum)",
+                    "form_submissions": "Number of form submissions needed",
+                    "user_flow": "Smoothness of user interaction flow"
+                }
+            },
+            "evaluation_metrics": {
+                "automated": {
+                    "python_quality": {
+                        "weight": 0.30,
+                        "components": ["test_coverage", "pylint_score", "test_failures"]
+                    },
+                    "template_quality": {
+                        "weight": 0.20,
+                        "components": ["accessibility", "inline_styles", "template_tags", "javascript", "structure"]
+                    }
+                },
+                "manual": {
+                    "prompt_efficiency": {
+                        "weight": 0.15,
+                        "components": ["prompt_count", "context_understanding", "solution_progression"]
+                    },
+                    "explanation_clarity": {
+                        "weight": 0.15,
+                        "components": ["code_explanation", "design_decisions", "implementation_steps"]
+                    },
+                    "task_efficiency": {
+                        "weight": 0.20,
+                        "components": ["field_efficiency", "form_submissions", "user_flow"]
+                    }
                 }
             },
             "test_files": {
@@ -36,25 +71,5 @@
                 "after": []
             }
         }
-    ],
-    "evaluation_metrics": {
-        "automated": {
-            "test_coverage": "Percentage of code covered by tests",
-            "test_pass_rate": "Percentage of tests passing",
-            "code_quality": "Code quality metrics (complexity, maintainability)",
-            "security_checks": "Security vulnerability checks"
-        },
-        "manual": {
-            "ui_ux": {
-                "form_usability": "Ease of use of the form (1-5)",
-                "error_handling": "Quality of error handling (1-5)",
-                "user_flow": "Smoothness of user flow (1-5)"
-            },
-            "code_quality": {
-                "readability": "Code readability (1-5)",
-                "maintainability": "Code maintainability (1-5)",
-                "documentation": "Code documentation quality (1-5)"
-            }
-        }
-    }
+    ]
 }
