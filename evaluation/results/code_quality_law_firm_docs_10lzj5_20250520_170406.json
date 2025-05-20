@@ -1,0 +1,146 @@
+{
+  "project": "law_firm_docs_10lzj5",
+  "timestamp": "20250520_170406",
+  "code_quality": {
+    "pylint": {
+      "score": 5.53,
+      "issues": [
+        "django-generator/generated_projects/law_firm_docs_10lzj5/create_superuser.py:1:0: C0114: Missing module docstring (missing-module-docstring)",
+        "django-generator/generated_projects/law_firm_docs_10lzj5/create_superuser.py:9:0: C0413: Import \"from django.contrib.auth import get_user_model\" should be placed at the top of the module (wrong-import-position)",
+        "django-generator/generated_projects/law_firm_docs_10lzj5/create_superuser.py:19:0: C0116: Missing function or method docstring (missing-function-docstring)",
+        "django-generator/generated_projects/law_firm_docs_10lzj5/manage.py:11:8: C0415: Import outside toplevel (django.core.management.execute_from_command_line) (import-outside-toplevel)",
+        "django-generator/generated_projects/law_firm_docs_10lzj5/law_firm_docs/models.py:19:0: C0301: Line too long (101/100) (line-too-long)",
+        "django-generator/generated_projects/law_firm_docs_10lzj5/law_firm_docs/models.py:1:0: C0114: Missing module docstring (missing-module-docstring)",
+        "django-generator/generated_projects/law_firm_docs_10lzj5/law_firm_docs/models.py:9:4: C0115: Missing class docstring (missing-class-docstring)",
+        "django-generator/generated_projects/law_firm_docs_10lzj5/law_firm_docs/models.py:9:4: R0903: Too few public methods (0/2) (too-few-public-methods)",
+        "django-generator/generated_projects/law_firm_docs_10lzj5/law_firm_docs/models.py:40:4: C0115: Missing class docstring (missing-class-docstring)",
+        "django-generator/generated_projects/law_firm_docs_10lzj5/law_firm_docs/models.py:40:4: R0903: Too few public methods (0/2) (too-few-public-methods)",
+        "django-generator/generated_projects/law_firm_docs_10lzj5/law_firm_docs/models.py:81:33: E1101: Instance of 'ForeignKey' has no 'reference_number' member (no-member)",
+        "django-generator/generated_projects/law_firm_docs_10lzj5/law_firm_docs/models.py:85:39: E1101: Instance of 'CharField' has no 'split' member (no-member)",
+        "django-generator/generated_projects/law_firm_docs_10lzj5/law_firm_docs/apps.py:1:0: C0114: Missing module docstring (missing-module-docstring)",
+        "django-generator/generated_projects/law_firm_docs_10lzj5/law_firm_docs/apps.py:4:0: C0115: Missing class docstring (missing-class-docstring)",
+        "django-generator/generated_projects/law_firm_docs_10lzj5/law_firm_docs/admin.py:1:0: C0114: Missing module docstring (missing-module-docstring)",
+        "django-generator/generated_projects/law_firm_docs_10lzj5/law_firm_docs/admin.py:7:0: C0115: Missing class docstring (missing-class-docstring)",
+        "django-generator/generated_projects/law_firm_docs_10lzj5/law_firm_docs/admin.py:14:0: C0115: Missing class docstring (missing-class-docstring)",
+        "django-generator/generated_projects/law_firm_docs_10lzj5/law_firm_docs/urls.py:1:0: C0114: Missing module docstring (missing-module-docstring)",
+        "django-generator/generated_projects/law_firm_docs_10lzj5/law_firm_docs/urls.py:5:0: C0103: Constant name \"app_name\" doesn't conform to UPPER_CASE naming style (invalid-name)",
+        "django-generator/generated_projects/law_firm_docs_10lzj5/law_firm_docs/views.py:1:0: C0114: Missing module docstring (missing-module-docstring)",
+        "django-generator/generated_projects/law_firm_docs_10lzj5/law_firm_docs/views.py:21:17: E1101: Class 'Client' has no 'objects' member (no-member)",
+        "django-generator/generated_projects/law_firm_docs_10lzj5/law_firm_docs/views.py:34:11: E1101: Class 'Client' has no 'DoesNotExist' member (no-member)",
+        "django-generator/generated_projects/law_firm_docs_10lzj5/law_firm_docs/views.py:18:18: W0613: Unused argument 'request' (unused-argument)",
+        "django-generator/generated_projects/law_firm_docs_10lzj5/law_firm_docs/views.py:54:11: W0718: Catching too general exception Exception (broad-exception-caught)",
+        "django-generator/generated_projects/law_firm_docs_10lzj5/law_firm_docs/views.py:44:17: E1101: Class 'Client' has no 'objects' member (no-member)",
+        "django-generator/generated_projects/law_firm_docs_10lzj5/law_firm_docs/views.py:103:11: W0718: Catching too general exception Exception (broad-exception-caught)",
+        "django-generator/generated_projects/law_firm_docs_10lzj5/law_firm_docs/views.py:69:17: E1101: Class 'Client' has no 'objects' member (no-member)",
+        "django-generator/generated_projects/law_firm_docs_10lzj5/law_firm_docs/views.py:84:19: E1101: Class 'Document' has no 'objects' member (no-member)",
+        "django-generator/generated_projects/law_firm_docs_10lzj5/law_firm_docs/views.py:101:11: E1101: Class 'Client' has no 'DoesNotExist' member (no-member)",
+        "django-generator/generated_projects/law_firm_docs_10lzj5/law_firm_docs/migrations/0001_initial.py:38:0: C0301: Line too long (117/100) (line-too-long)",
+        "django-generator/generated_projects/law_firm_docs_10lzj5/law_firm_docs/migrations/0001_initial.py:1:0: C0114: Missing module docstring (missing-module-docstring)",
+        "django-generator/generated_projects/law_firm_docs_10lzj5/law_firm_docs/migrations/0001_initial.py:1:0: C0103: Module name \"0001_initial\" doesn't conform to snake_case naming style (invalid-name)",
+        "django-generator/generated_projects/law_firm_docs_10lzj5/law_firm_docs/migrations/0001_initial.py:9:0: C0115: Missing class docstring (missing-class-docstring)",
+        "django-generator/generated_projects/law_firm_docs_10lzj5/law_firm_docs/tests/beforetask/test_beforetask_form_submission.py:1:0: C0114: Missing module docstring (missing-module-docstring)",
+        "django-generator/generated_projects/law_firm_docs_10lzj5/law_firm_docs/tests/beforetask/test_beforetask_form_submission.py:9:0: C0116: Missing function or method docstring (missing-function-docstring)",
+        "django-generator/generated_projects/law_firm_docs_10lzj5/law_firm_docs/tests/beforetask/test_beforetask_form_submission.py:10:4: W0621: Redefining name 'Client' from outer scope (line 5) (redefined-outer-name)",
+        "django-generator/generated_projects/law_firm_docs_10lzj5/law_firm_docs/tests/beforetask/test_beforetask_form_submission.py:10:4: W0404: Reimport 'Client' (imported line 5) (reimported)",
+        "django-generator/generated_projects/law_firm_docs_10lzj5/law_firm_docs/tests/beforetask/test_beforetask_form_submission.py:10:4: C0415: Import outside toplevel (django.test.Client) (import-outside-toplevel)",
+        "django-generator/generated_projects/law_firm_docs_10lzj5/law_firm_docs/tests/beforetask/test_beforetask_form_submission.py:16:25: W0621: Redefining name 'client' from outer scope (line 9) (redefined-outer-name)",
+        "django-generator/generated_projects/law_firm_docs_10lzj5/law_firm_docs/tests/beforetask/test_beforetask_form_submission.py:18:4: W0612: Unused variable 'user' (unused-variable)",
+        "django-generator/generated_projects/law_firm_docs_10lzj5/law_firm_docs/tests/beforetask/test_beforetask_form_submission.py:24:0: C0116: Missing function or method docstring (missing-function-docstring)",
+        "django-generator/generated_projects/law_firm_docs_10lzj5/law_firm_docs/tests/beforetask/test_beforetask_form_submission.py:31:0: C0116: Missing function or method docstring (missing-function-docstring)",
+        "django-generator/generated_projects/law_firm_docs_10lzj5/law_firm_docs/tests/beforetask/test_beforetask_form_submission.py:32:11: E1101: Class 'Client' has no 'objects' member (no-member)",
+        "django-generator/generated_projects/law_firm_docs_10lzj5/law_firm_docs/tests/beforetask/test_beforetask_form_submission.py:37:4: W0621: Redefining name 'authenticated_client' from outer scope (line 16) (redefined-outer-name)",
+        "django-generator/generated_projects/law_firm_docs_10lzj5/law_firm_docs/tests/beforetask/test_beforetask_form_submission.py:37:26: W0621: Redefining name 'test_file' from outer scope (line 24) (redefined-outer-name)",
+        "django-generator/generated_projects/law_firm_docs_10lzj5/law_firm_docs/tests/beforetask/test_beforetask_form_submission.py:37:37: W0621: Redefining name 'existing_client' from outer scope (line 31) (redefined-outer-name)",
+        "django-generator/generated_projects/law_firm_docs_10lzj5/law_firm_docs/tests/beforetask/test_beforetask_form_submission.py:54:15: E1101: Class 'Document' has no 'objects' member (no-member)",
+        "django-generator/generated_projects/law_firm_docs_10lzj5/law_firm_docs/tests/beforetask/test_beforetask_form_submission.py:59:28: W0621: Redefining name 'authenticated_client' from outer scope (line 16) (redefined-outer-name)",
+        "django-generator/generated_projects/law_firm_docs_10lzj5/law_firm_docs/tests/beforetask/test_beforetask_client_lookup.py:1:0: C0114: Missing module docstring (missing-module-docstring)",
+        "django-generator/generated_projects/law_firm_docs_10lzj5/law_firm_docs/tests/beforetask/test_beforetask_client_lookup.py:10:0: C0116: Missing function or method docstring (missing-function-docstring)",
+        "django-generator/generated_projects/law_firm_docs_10lzj5/law_firm_docs/tests/beforetask/test_beforetask_client_lookup.py:11:4: W0621: Redefining name 'Client' from outer scope (line 6) (redefined-outer-name)",
+        "django-generator/generated_projects/law_firm_docs_10lzj5/law_firm_docs/tests/beforetask/test_beforetask_client_lookup.py:11:4: W0404: Reimport 'Client' (imported line 6) (reimported)",
+        "django-generator/generated_projects/law_firm_docs_10lzj5/law_firm_docs/tests/beforetask/test_beforetask_client_lookup.py:11:4: C0415: Import outside toplevel (django.test.Client) (import-outside-toplevel)",
+        "django-generator/generated_projects/law_firm_docs_10lzj5/law_firm_docs/tests/beforetask/test_beforetask_client_lookup.py:17:25: W0621: Redefining name 'client' from outer scope (line 10) (redefined-outer-name)",
+        "django-generator/generated_projects/law_firm_docs_10lzj5/law_firm_docs/tests/beforetask/test_beforetask_client_lookup.py:19:4: W0612: Unused variable 'user' (unused-variable)",
+        "django-generator/generated_projects/law_firm_docs_10lzj5/law_firm_docs/tests/beforetask/test_beforetask_client_lookup.py:25:0: C0116: Missing function or method docstring (missing-function-docstring)",
+        "django-generator/generated_projects/law_firm_docs_10lzj5/law_firm_docs/tests/beforetask/test_beforetask_client_lookup.py:26:11: E1101: Class 'Client' has no 'objects' member (no-member)",
+        "django-generator/generated_projects/law_firm_docs_10lzj5/law_firm_docs/tests/beforetask/test_beforetask_client_lookup.py:32:32: W0621: Redefining name 'authenticated_client' from outer scope (line 17) (redefined-outer-name)",
+        "django-generator/generated_projects/law_firm_docs_10lzj5/law_firm_docs/tests/beforetask/test_beforetask_client_lookup.py:32:54: W0621: Redefining name 'test_client' from outer scope (line 25) (redefined-outer-name)",
+        "django-generator/generated_projects/law_firm_docs_10lzj5/law_firm_docs/tests/beforetask/test_beforetask_client_lookup.py:32:54: W0613: Unused argument 'test_client' (unused-argument)",
+        "django-generator/generated_projects/law_firm_docs_10lzj5/law_firm_docs/tests/beforetask/test_beforetask_client_lookup.py:51:27: W0621: Redefining name 'authenticated_client' from outer scope (line 17) (redefined-outer-name)",
+        "django-generator/generated_projects/law_firm_docs_10lzj5/law_firm_docs/tests/beforetask/test_beforetask_client_lookup.py:62:34: W0621: Redefining name 'authenticated_client' from outer scope (line 17) (redefined-outer-name)",
+        "django-generator/generated_projects/law_firm_docs_10lzj5/project_placeholder/views.py:1:0: C0114: Missing module docstring (missing-module-docstring)",
+        "django-generator/generated_projects/law_firm_docs_10lzj5/project_placeholder/views.py:5:0: C0115: Missing class docstring (missing-class-docstring)",
+        "django-generator/generated_projects/law_firm_docs_10lzj5/project_placeholder/views.py:5:0: R0901: Too many ancestors (9/7) (too-many-ancestors)",
+        "django-generator/generated_projects/law_firm_docs_10lzj5/project_placeholder/wsgi.py:1:0: R0801: Similar lines in 2 files",
+        "==law_firm_docs.migrations.0001_initial:[82:88]",
+        "==law_firm_docs.models:[45:51]"
+      ]
+    },
+    "coverage": {
+      "percentage": 90,
+      "details": [
+        {
+          "file": "law_firm_docs/__init__.py",
+          "statements": 0,
+          "missing": 0,
+          "coverage": 100
+        },
+        {
+          "file": "law_firm_docs/admin.py",
+          "statements": 13,
+          "missing": 0,
+          "coverage": 100
+        },
+        {
+          "file": "law_firm_docs/apps.py",
+          "statements": 5,
+          "missing": 0,
+          "coverage": 100
+        },
+        {
+          "file": "law_firm_docs/migrations/0001_initial.py",
+          "statements": 8,
+          "missing": 0,
+          "coverage": 100
+        },
+        {
+          "file": "law_firm_docs/migrations/__init__.py",
+          "statements": 0,
+          "missing": 0,
+          "coverage": 100
+        },
+        {
+          "file": "law_firm_docs/models.py",
+          "statements": 38,
+          "missing": 3,
+          "coverage": 92
+        },
+        {
+          "file": "law_firm_docs/tests/beforetask/test_beforetask_client_lookup.py",
+          "statements": 42,
+          "missing": 0,
+          "coverage": 100
+        },
+        {
+          "file": "law_firm_docs/tests/beforetask/test_beforetask_form_submission.py",
+          "statements": 33,
+          "missing": 0,
+          "coverage": 100
+        },
+        {
+          "file": "law_firm_docs/urls.py",
+          "statements": 4,
+          "missing": 0,
+          "coverage": 100
+        },
+        {
+          "file": "law_firm_docs/views.py",
+          "statements": 52,
+          "missing": 16,
+          "coverage": 69
+        }
+      ],
+      "status": "success",
+      "message": "Coverage data found and analyzed"
+    }
+  }
+}

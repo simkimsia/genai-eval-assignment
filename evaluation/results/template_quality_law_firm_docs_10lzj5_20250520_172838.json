@@ -1,0 +1,219 @@
+{
+  "project": "law_firm_docs_10lzj5",
+  "timestamp": "20250520_172838",
+  "metrics": {
+    "total_templates": 3,
+    "total_issues": 48,
+    "accessibility": {
+      "missing_alt": 0,
+      "missing_aria": 17,
+      "color_contrast": 0,
+      "form_labels": 2
+    },
+    "inline_styles": 3,
+    "template_tags": {
+      "extends": 2,
+      "blocks": 10,
+      "includes": 0,
+      "url_tags": 1,
+      "static_tags": 0,
+      "csrf_tokens": 2,
+      "form_errors": 0,
+      "potential_xss": 0
+    },
+    "javascript": {
+      "inline_scripts": 1,
+      "event_handlers": 1,
+      "jquery_usage": 0,
+      "fetch_usage": 1,
+      "error_handling": 2
+    },
+    "structure": {
+      "block_count": 0,
+      "extends_count": 0,
+      "include_count": 0,
+      "form_count": 2,
+      "script_count": 2,
+      "nested_forms": 0,
+      "form_validation": 2
+    }
+  },
+  "template_quality": {
+    "base.html": {
+      "inline_styles": {
+        "count": 0,
+        "elements": []
+      },
+      "accessibility": {
+        "missing_alt": [],
+        "missing_aria": [
+          "<button class=\"navbar-toggler\" data-bs-target=\"#navbarNav\" data-bs-toggle=\"collapse\" type=\"button\">\n<span class=\"navbar-toggler-icon\"></span>\n</button>",
+          "<button class=\"btn btn-outline-light btn-sm\" type=\"submit\">Logout</button>"
+        ],
+        "color_contrast": [],
+        "form_labels": []
+      },
+      "django_template_tags": {
+        "extends": [],
+        "blocks": [
+          "title",
+          "extra_css",
+          "content",
+          "extra_js"
+        ],
+        "includes": [],
+        "url_tags": [
+          "logout"
+        ],
+        "static_tags": [],
+        "csrf_tokens": [
+          "{% csrf_token %}"
+        ],
+        "form_errors": [],
+        "potential_xss": []
+      },
+      "javascript": {
+        "inline_scripts": [],
+        "event_handlers": [],
+        "jquery_usage": [],
+        "fetch_usage": [],
+        "error_handling": []
+      },
+      "structure": {
+        "block_count": 0,
+        "extends_count": 0,
+        "include_count": 0,
+        "form_count": 1,
+        "script_count": 1,
+        "nested_forms": [],
+        "form_validation": [
+          "<form action=\"{% url 'logout' %}\" class=\"d-inline\" method=\"post\">\n                        {% csrf_token %}\n                        <button class=\"btn btn-outline-light btn-sm\" type=\"submit\">Logout</button>\n</form>"
+        ]
+      }
+    },
+    "create.html": {
+      "inline_styles": {
+        "count": 3,
+        "elements": [
+          "<div class=\"mt-3\" id=\"clientDetails\" style=\"display: none;\">\n<h4>Client Details</h4>\n<div class=\"alert alert-success\">\n<i class=\"fas fa-check-circle\"></i> Client found! The following information will be used for this document.\n                </div>\n<div class=\"row\">\n<div class=\"col-md-6\">\n<p><strong>Name:</strong> <span id=\"clientName\"></span></p>\n<p><strong>Email:</strong> <span id=\"clientEmail\"></span></p>\n</div>\n<div class=\"col-md-6\">\n<p><strong>Phone:</strong> <span id=\"clientPhone\"></span></p>\n<p><strong>Address:</strong> <span id=\"clientAddress\"></span></p>\n</div>\n</div>\n</div>",
+          "<div class=\"mt-3\" id=\"newClientForm\" style=\"display: none;\">\n<h4>New Client Information</h4>\n<div class=\"alert alert-info\">\n<i class=\"fas fa-info-circle\"></i> No client found with this reference number. Please provide client details below.\n                </div>\n<div class=\"row\">\n<div class=\"col-md-6\">\n<div class=\"form-group\">\n<label for=\"newClientName\">Client Name <span class=\"text-danger\">*</span></label>\n<input class=\"form-control\" id=\"newClientName\" required=\"\" type=\"text\"/>\n</div>\n<div class=\"form-group\">\n<label for=\"newClientEmail\">Email</label>\n<input class=\"form-control\" id=\"newClientEmail\" type=\"email\"/>\n</div>\n</div>\n<div class=\"col-md-6\">\n<div class=\"form-group\">\n<label for=\"newClientPhone\">Phone</label>\n<input class=\"form-control\" id=\"newClientPhone\" type=\"tel\"/>\n</div>\n<div class=\"form-group\">\n<label for=\"newClientAddress\">Address</label>\n<textarea class=\"form-control\" id=\"newClientAddress\" rows=\"2\"></textarea>\n</div>\n</div>\n</div>\n<div class=\"alert alert-warning\" id=\"duplicateWarning\" style=\"display: none;\">\n<i class=\"fas fa-exclamation-triangle\"></i> Warning: A client with a similar name already exists. Please verify this is a new client.\n                </div>\n</div>",
+          "<div class=\"alert alert-warning\" id=\"duplicateWarning\" style=\"display: none;\">\n<i class=\"fas fa-exclamation-triangle\"></i> Warning: A client with a similar name already exists. Please verify this is a new client.\n                </div>"
+        ]
+      },
+      "accessibility": {
+        "missing_alt": [],
+        "missing_aria": [
+          "<input class=\"form-control\" id=\"clientReference\" pattern=\"[A-Z0-9-]+\" placeholder=\"Enter client reference number\" required=\"\" title=\"Only uppercase letters, numbers, and hyphens allowed\" type=\"text\"/>",
+          "<button class=\"btn btn-primary\" onclick=\"lookupClient()\" type=\"button\">Lookup</button>",
+          "<input class=\"form-control\" id=\"newClientName\" required=\"\" type=\"text\"/>",
+          "<input class=\"form-control\" id=\"newClientEmail\" type=\"email\"/>",
+          "<input class=\"form-control\" id=\"newClientPhone\" type=\"tel\"/>",
+          "<textarea class=\"form-control\" id=\"newClientAddress\" rows=\"2\"></textarea>",
+          "<input id=\"clientId\" name=\"client_id\" type=\"hidden\"/>",
+          "<input id=\"isNewClient\" name=\"is_new_client\" type=\"hidden\" value=\"false\"/>",
+          "<input class=\"form-control\" id=\"documentTitle\" name=\"title\" required=\"\" type=\"text\"/>",
+          "<select class=\"form-control\" id=\"documentType\" name=\"document_type\" required=\"\">\n<option value=\"\">Select a type</option>\n<option value=\"contract\">Contract</option>\n<option value=\"agreement\">Agreement</option>\n<option value=\"letter\">Letter</option>\n<option value=\"report\">Report</option>\n<option value=\"memo\">Memo</option>\n<option value=\"other\">Other</option>\n</select>",
+          "<input class=\"form-control\" id=\"documentFile\" name=\"file\" required=\"\" type=\"file\"/>",
+          "<textarea class=\"form-control\" id=\"documentDescription\" name=\"description\" rows=\"3\"></textarea>",
+          "<input class=\"form-check-input\" id=\"isConfidential\" name=\"is_confidential\" type=\"checkbox\"/>",
+          "<input class=\"form-control\" id=\"documentTags\" name=\"tags\" placeholder=\"e.g., contract, legal, important\" type=\"text\"/>",
+          "<button class=\"btn btn-primary\" disabled=\"\" id=\"submitButton\" type=\"submit\">Create Document</button>"
+        ],
+        "color_contrast": [],
+        "form_labels": [
+          "<input id=\"clientId\" name=\"client_id\" type=\"hidden\"/>",
+          "<input id=\"isNewClient\" name=\"is_new_client\" type=\"hidden\" value=\"false\"/>"
+        ]
+      },
+      "django_template_tags": {
+        "extends": [
+          "base.html"
+        ],
+        "blocks": [
+          "title",
+          "content",
+          "extra_js"
+        ],
+        "includes": [],
+        "url_tags": [],
+        "static_tags": [],
+        "csrf_tokens": [
+          "{% csrf_token %}"
+        ],
+        "form_errors": [],
+        "potential_xss": []
+      },
+      "javascript": {
+        "inline_scripts": [
+          "<script>\n// Client lookup functionality\nfunction lookupClient() {\n    const reference = document.getElementById('clientReference').value.trim();\n    if (!reference) {\n        alert('Please enter a client reference number');\n        return;\n    }\n\n    // Validate reference number format\n    const referencePattern = /^[A-Z0-9-]+$/;\n    if (!referencePattern.test(reference)) {\n        alert('Reference number must contain only uppercase letters, numbers, and hyphens');\n        return;\n    }\n\n    // Hide all client-related sections initially\n    document.getElementById('clientDetails').style.display = 'none';\n    document.getElementById('newClientForm').style.display = 'none';\n    document.getElementById('duplicateWarning').style.display = 'none';\n    document.getElementById('submitButton').disabled = true;\n\n    fetch(`/api/client-lookup/${reference}/`)\n        .then(response => response.json())\n        .then(data => {\n            if (data.exists) {\n                // Show existing client details\n                document.getElementById('clientDetails').style.display = 'block';\n                document.getElementById('clientId').value = data.client.id;\n                document.getElementById('isNewClient').value = \"false\";\n\n                // Populate client details\n                document.getElementById('clientName').textContent = data.client.name;\n                document.getElementById('clientEmail').textContent = data.client.email || 'N/A';\n                document.getElementById('clientPhone').textContent = data.client.phone || 'N/A';\n                document.getElementById('clientAddress').textContent = data.client.address || 'N/A';\n\n                // Enable document form\n                document.getElementById('submitButton').disabled = false;\n            } else {\n                // Show new client form\n                document.getElementById('newClientForm').style.display = 'block';\n                document.getElementById('isNewClient').value = \"true\";\n                document.getElementById('clientId').value = '';\n\n                // Check for similar clients if data provides this info\n                if (data.similar_clients && data.similar_clients.length > 0) {\n                    document.getElementById('duplicateWarning').style.display = 'block';\n                }\n\n                // Enable document form for new client\n                document.getElementById('submitButton').disabled = false;\n            }\n        })\n        .catch(error => {\n            console.error('Error:', error);\n            alert('Error looking up client');\n        });\n}\n\n// Check for potential duplicate clients when name is entered\ndocument.getElementById('newClientName').addEventListener('blur', function() {\n    const name = this.value.trim();\n    if (name) {\n        fetch(`/api/check-duplicate-client/?name=${encodeURIComponent(name)}`)\n            .then(response => response.json())\n            .then(data => {\n                if (data.duplicate_found) {\n                    document.getElementById('duplicateWarning').style.display = 'block';\n                } else {\n                    document.getElementById('duplicateWarning').style.display = 'none';\n                }\n            })\n            .catch(error => {\n                console.error('Error:', error);\n            });\n    }\n});\n\n// Form submission\ndocument.getElementById('documentForm').addEventListener('submit', function(e) {\n    e.preventDefault();\n\n    const isNewClient = document.getElementById('isNewClient').value === \"true\";\n    const clientReference = document.getElementById('clientReference').value.trim();\n\n    if (!clientReference) {\n        alert('Please enter a client reference number');\n        return;\n    }\n\n    const formData = new FormData(this);\n    formData.append('reference_number', clientReference);\n\n    // Add new client information if creating a new client\n    if (isNewClient) {\n        const clientName = document.getElementById('newClientName').value.trim();\n        if (!clientName) {\n            alert('Please enter client name');\n            return;\n        }\n\n        formData.append('client_name', clientName);\n        formData.append('client_email', document.getElementById('newClientEmail').value.trim());\n        formData.append('client_phone', document.getElementById('newClientPhone').value.trim());\n        formData.append('client_address', document.getElementById('newClientAddress').value.trim());\n    }\n\n    // Show loading state\n    const submitButton = document.getElementById('submitButton');\n    const originalButtonText = submitButton.textContent;\n    submitButton.disabled = true;\n    submitButton.innerHTML = '<span class=\"spinner-border spinner-border-sm\" role=\"status\" aria-hidden=\"true\"></span> Creating...';\n\n    fetch('/api/create-document/', {\n        method: 'POST',\n        body: formData\n    })\n    .then(response => response.json())\n    .then(data => {\n        if (data.success) {\n            window.location.href = data.redirect_url;\n        } else {\n            alert('Error: ' + data.error);\n            // Reset button state\n            submitButton.disabled = false;\n            submitButton.textContent = originalButtonText;\n        }\n    })\n    .catch(error => {\n        console.error('Error:', error);\n        alert('Error creating document');\n        // Reset button state\n        submitButton.disabled = false;\n        submitButton.textContent = originalButtonText;\n    });\n});\n</script>"
+        ],
+        "event_handlers": [
+          "button[onclick]"
+        ],
+        "jquery_usage": [],
+        "fetch_usage": [
+          "<script>\n// Client lookup functionality\nfunction lookupClient() {\n    const reference = document.getElementById('clientReference').value.trim();\n    if (!reference) {\n        alert('Please enter a client reference number');\n        return;\n    }\n\n    // Validate reference number format\n    const referencePattern = /^[A-Z0-9-]+$/;\n    if (!referencePattern.test(reference)) {\n        alert('Reference number must contain only uppercase letters, numbers, and hyphens');\n        return;\n    }\n\n    // Hide all client-related sections initially\n    document.getElementById('clientDetails').style.display = 'none';\n    document.getElementById('newClientForm').style.display = 'none';\n    document.getElementById('duplicateWarning').style.display = 'none';\n    document.getElementById('submitButton').disabled = true;\n\n    fetch(`/api/client-lookup/${reference}/`)\n        .then(response => response.json())\n        .then(data => {\n            if (data.exists) {\n                // Show existing client details\n                document.getElementById('clientDetails').style.display = 'block';\n                document.getElementById('clientId').value = data.client.id;\n                document.getElementById('isNewClient').value = \"false\";\n\n                // Populate client details\n                document.getElementById('clientName').textContent = data.client.name;\n                document.getElementById('clientEmail').textContent = data.client.email || 'N/A';\n                document.getElementById('clientPhone').textContent = data.client.phone || 'N/A';\n                document.getElementById('clientAddress').textContent = data.client.address || 'N/A';\n\n                // Enable document form\n                document.getElementById('submitButton').disabled = false;\n            } else {\n                // Show new client form\n                document.getElementById('newClientForm').style.display = 'block';\n                document.getElementById('isNewClient').value = \"true\";\n                document.getElementById('clientId').value = '';\n\n                // Check for similar clients if data provides this info\n                if (data.similar_clients && data.similar_clients.length > 0) {\n                    document.getElementById('duplicateWarning').style.display = 'block';\n                }\n\n                // Enable document form for new client\n                document.getElementById('submitButton').disabled = false;\n            }\n        })\n        .catch(error => {\n            console.error('Error:', error);\n            alert('Error looking up client');\n        });\n}\n\n// Check for potential duplicate clients when name is entered\ndocument.getElementById('newClientName').addEventListener('blur', function() {\n    const name = this.value.trim();\n    if (name) {\n        fetch(`/api/check-duplicate-client/?name=${encodeURIComponent(name)}`)\n            .then(response => response.json())\n            .then(data => {\n                if (data.duplicate_found) {\n                    document.getElementById('duplicateWarning').style.display = 'block';\n                } else {\n                    document.getElementById('duplicateWarning').style.display = 'none';\n                }\n            })\n            .catch(error => {\n                console.error('Error:', error);\n            });\n    }\n});\n\n// Form submission\ndocument.getElementById('documentForm').addEventListener('submit', function(e) {\n    e.preventDefault();\n\n    const isNewClient = document.getElementById('isNewClient').value === \"true\";\n    const clientReference = document.getElementById('clientReference').value.trim();\n\n    if (!clientReference) {\n        alert('Please enter a client reference number');\n        return;\n    }\n\n    const formData = new FormData(this);\n    formData.append('reference_number', clientReference);\n\n    // Add new client information if creating a new client\n    if (isNewClient) {\n        const clientName = document.getElementById('newClientName').value.trim();\n        if (!clientName) {\n            alert('Please enter client name');\n            return;\n        }\n\n        formData.append('client_name', clientName);\n        formData.append('client_email', document.getElementById('newClientEmail').value.trim());\n        formData.append('client_phone', document.getElementById('newClientPhone').value.trim());\n        formData.append('client_address', document.getElementById('newClientAddress').value.trim());\n    }\n\n    // Show loading state\n    const submitButton = document.getElementById('submitButton');\n    const originalButtonText = submitButton.textContent;\n    submitButton.disabled = true;\n    submitButton.innerHTML = '<span class=\"spinner-border spinner-border-sm\" role=\"status\" aria-hidden=\"true\"></span> Creating...';\n\n    fetch('/api/create-document/', {\n        method: 'POST',\n        body: formData\n    })\n    .then(response => response.json())\n    .then(data => {\n        if (data.success) {\n            window.location.href = data.redirect_url;\n        } else {\n            alert('Error: ' + data.error);\n            // Reset button state\n            submitButton.disabled = false;\n            submitButton.textContent = originalButtonText;\n        }\n    })\n    .catch(error => {\n        console.error('Error:', error);\n        alert('Error creating document');\n        // Reset button state\n        submitButton.disabled = false;\n        submitButton.textContent = originalButtonText;\n    });\n});\n</script>"
+        ],
+        "error_handling": [
+          "fetch(`/api/client-lookup/${reference}/`)",
+          "fetch(`/api/check-duplicate-client/?name=${encodeURIComponent(name)"
+        ]
+      },
+      "structure": {
+        "block_count": 0,
+        "extends_count": 0,
+        "include_count": 0,
+        "form_count": 1,
+        "script_count": 1,
+        "nested_forms": [],
+        "form_validation": [
+          "<form enctype=\"multipart/form-data\" id=\"documentForm\" method=\"post\">\n                {% csrf_token %}\n                <input id=\"clientId\" name=\"client_id\" type=\"hidden\"/>\n<input id=\"isNewClient\" name=\"is_new_client\" type=\"hidden\" value=\"false\"/>\n<div class=\"row\">\n<div class=\"col-md-6\">\n<div class=\"form-group\">\n<label for=\"documentTitle\">Title <span class=\"text-danger\">*</span></label>\n<input class=\"form-control\" id=\"documentTitle\" name=\"title\" required=\"\" type=\"text\"/>\n</div>\n<div class=\"form-group\">\n<label for=\"documentType\">Document Type <span class=\"text-danger\">*</span></label>\n<select class=\"form-control\" id=\"documentType\" name=\"document_type\" required=\"\">\n<option value=\"\">Select a type</option>\n<option value=\"contract\">Contract</option>\n<option value=\"agreement\">Agreement</option>\n<option value=\"letter\">Letter</option>\n<option value=\"report\">Report</option>\n<option value=\"memo\">Memo</option>\n<option value=\"other\">Other</option>\n</select>\n</div>\n</div>\n<div class=\"col-md-6\">\n<div class=\"form-group\">\n<label for=\"documentFile\">File <span class=\"text-danger\">*</span></label>\n<input class=\"form-control\" id=\"documentFile\" name=\"file\" required=\"\" type=\"file\"/>\n</div>\n<div class=\"form-group\">\n<label for=\"documentDescription\">Description</label>\n<textarea class=\"form-control\" id=\"documentDescription\" name=\"description\" rows=\"3\"></textarea>\n</div>\n</div>\n</div>\n<div class=\"form-group\">\n<div class=\"form-check\">\n<input class=\"form-check-input\" id=\"isConfidential\" name=\"is_confidential\" type=\"checkbox\"/>\n<label class=\"form-check-label\" for=\"isConfidential\">Mark as Confidential</label>\n</div>\n</div>\n<div class=\"form-group\">\n<label for=\"documentTags\">Tags (comma-separated)</label>\n<input class=\"form-control\" id=\"documentTags\" name=\"tags\" placeholder=\"e.g., contract, legal, important\" type=\"text\"/>\n</div>\n<button class=\"btn btn-primary\" disabled=\"\" id=\"submitButton\" type=\"submit\">Create Document</button>\n</form>"
+        ]
+      }
+    },
+    "view.html": {
+      "inline_styles": {
+        "count": 0,
+        "elements": []
+      },
+      "accessibility": {
+        "missing_alt": [],
+        "missing_aria": [],
+        "color_contrast": [],
+        "form_labels": []
+      },
+      "django_template_tags": {
+        "extends": [
+          "base.html"
+        ],
+        "blocks": [
+          "title",
+          "content",
+          "extra_css"
+        ],
+        "includes": [],
+        "url_tags": [],
+        "static_tags": [],
+        "csrf_tokens": [],
+        "form_errors": [],
+        "potential_xss": []
+      },
+      "javascript": {
+        "inline_scripts": [],
+        "event_handlers": [],
+        "jquery_usage": [],
+        "fetch_usage": [],
+        "error_handling": []
+      },
+      "structure": {
+        "block_count": 0,
+        "extends_count": 0,
+        "include_count": 0,
+        "form_count": 0,
+        "script_count": 0,
+        "nested_forms": [],
+        "form_validation": []
+      }
+    }
+  }
+}
