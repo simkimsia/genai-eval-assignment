@@ -10,7 +10,7 @@ This framework is influenced by two key perspectives:
 
 1. **The Second Half of AI** (Shunyu Yao, 2025)
    - Moving beyond benchmark-focused evaluation to real-world utility
-   - Questioning traditional i.i.d. evaluation assumptions
+   - Questioning traditional i.i.d. (independent and identically distributed) evaluation assumptions
    - Emphasizing interactive, human-in-the-loop evaluation
    - Focusing on practical implementation over theoretical performance
 
@@ -42,175 +42,92 @@ These influences shape our approach to evaluation, moving away from isolated tas
 
 ## Core Metrics
 
-### 1. Automated Metrics (60%)
+### 1. Python Code Quality Delta (30%)
 
-#### Code Quality (30%)
+- Measured by `step_01_run_tests.py` and `step_02_check_python_code_quality.py`
+- Components:
+  - Test coverage delta (after - before)
+  - Number of new failed tests (after - before)
+  - Pylint score delta (after - before)
+- Scoring:
+  - If any old tests fail: 0 points
+  - If no new failures: (coverage_delta + pylint_delta) / 2
+  - Example:
+    - Before: 80% coverage, 8.0 pylint
+    - After: 85% coverage, 8.5 pylint
+    - Delta: +5% coverage, +0.5 pylint = 2.75 points
 
-- Unit test / integration test coverage (check for any regression bugs)
-  - handled by: `python evaluation/step_01_run_tests.py`
-  - Calculates coverage percentage across all Python files
-  - Provides per-file coverage details
-  - Weight: 10% of total score
-  - Scoring:
-    - If any tests fail: 0 points (automatic failure)
-    - If all tests pass: Coverage percentage directly contributes to score (e.g., 85% coverage = 8.5 points)
-  - Note: Test failures are considered critical and override coverage scoring
+### 2. Template Code Quality Delta (20%)
 
-- Code complexity (pylint score for Python, and coverage)
-  - handled by: `python evaluation/step_02_check_python_code_quality.py`
-  - Pylint score (0-10) for code quality
-  - Coverage percentage calculated as: (total_statements - missing_statements) / total_statements * 100
-  - Includes detailed coverage breakdown per file
-  - Weight: 10% of total score
-  - Scoring:
-    - If any tests failed in step_01: 0 points (automatic failure)
-    - If all tests passed: Average of pylint score and coverage percentage (e.g., pylint 8.5 + coverage 85% = 8.5 points)
+- Measured by `step_03_check_template_quality.py`
+- Components:
+  - Total issues delta (after - before)
+  - Categories: accessibility, inline styles, template tags, JavaScript, structure
+- Scoring:
+  - Formula: max(0, 10 - (issues_delta / 5))
+  - Example:
+    - Before: 30 issues
+    - After: 40 issues
+    - Delta: +10 issues = 8 points (10 - (10/5))
 
-- Template complexity (custom metric for HTML templates)
-  - handled by: `python evaluation/step_03_check_template_quality.py`
-  - Total issues calculated as sum of:
-    - Accessibility issues (missing alt text, ARIA labels, color contrast, form labels)
-    - Inline styles count
-    - Template tag issues (extends, blocks, includes, URLs, static files, CSRF, form errors, XSS)
-    - JavaScript issues (inline scripts, event handlers, jQuery usage, fetch usage, error handling)
-    - Structural issues (blocks, extends, includes, forms, scripts, nested forms, validation)
-  - Lower total_issues indicates better template quality
-  - Weight: 10% of total score
-  - Scoring:
-    - If any tests failed in step_01: 0 points (automatic failure)
-    - If all tests passed: Convert issues to score using formula: max(0, 10 - (total_issues / 10))
-      - Example: 50 issues = 5 points, 20 issues = 8 points, 0 issues = 10 points
+### 3. Number of Prompts (15%)
 
-#### Functionality (30%)
+- Manual count of prompts needed to complete the task
+- Lower is better
+- Scoring:
+  - Formula: max(0, 10 - (prompt_count / 2))
+  - Example:
+    - 4 prompts = 8 points
+    - 10 prompts = 5 points
+    - 20+ prompts = 0 points
 
-- Integration test pass rate for:
-  - Client lookup functionality
-  - Form submission
-  - Document upload
-  - Edge case handling
+### 4. LLM-as-Judge Explanation Clarity (15%)
 
-### 2. Manual Metrics (40%)
+- Automated evaluation of code explanation quality
+- Scale: 1-5
+- Scoring:
+  - Formula: (score / 5) * 10
+  - Example: 4/5 = 8 points
 
-#### Developer Experience (20%)
+### 5. Task Completion Efficiency (20%)
 
-- Number of prompts needed to complete task
-- LLM-as-judge evaluation of:
-  - Code explanation clarity
-  - Implementation approach
-  - Error handling quality
+- Measured by:
+  - Field efficiency ratio (actual_fields / minimum_required_fields)
+    - Closer to 1.0 is better
+    - Example: 8 fields when only 6 are needed = 0.75
+  - Number of form submissions needed
+    - Lower is better
+    - Example: 2 submissions = 8 points
+- Scoring:
+  - Field efficiency: min(10, field_ratio * 10)
+    - Example: 0.75 ratio = 7.5 points
+  - Form submissions: max(0, 10 - (submission_count * 2))
+    - Example: 2 submissions = 6 points
+  - Final score: average of the two
+  - Example:
+    - Field efficiency: 7.5 points
+    - Form submissions: 6 points
+    - Final: 6.75 points
 
-#### UI/UX Implementation (20%)
-
-- Task completion efficiency
-  - Number of clicks to complete main task
-  - Number of form fields to fill
-  - Number of page loads required
-- Edge case handling (human evaluated)
-  - Form validation errors
-  - Client lookup failures
-  - Document upload issues
-  - Error message clarity
-
-## Implementation Guide
-
-### 1. Automated Testing Setup
-
-```python
-# test_client_lookup.py
-def test_client_lookup():
-    # Test existing client lookup
-    # Test new client creation
-    # Test validation errors
-    pass
-
-# test_form_submission.py
-def test_form_submission():
-    # Test successful submission
-    # Test validation errors
-    # Test file upload
-    pass
-
-# test_edge_cases.py
-def test_edge_cases():
-    # Test duplicate client references
-    # Test invalid file types
-    # Test large file uploads
-    pass
-```
-
-### 2. Manual Evaluation Checklist
-
-#### Developer Experience
-
-- [ ] Number of prompts needed: ___
-- [ ] Code explanation clarity (1-5): ___
-- [ ] Implementation approach (1-5): ___
-- [ ] Error handling quality (1-5): ___
-
-#### UI/UX Implementation
-
-- [ ] Clicks to complete task: ___
-- [ ] Form fields to fill: ___
-- [ ] Page loads required: ___
-- [ ] Edge case handling (1-5): ___
-
-### 3. LLM-as-Judge Prompt Template
+## Final Score Calculation
 
 ```
-Please evaluate the following code implementation:
-
-Code:
-{code_snippet}
-
-Criteria:
-1. Code explanation clarity (1-5)
-2. Implementation approach (1-5)
-3. Error handling quality (1-5)
-
-Provide scores and brief justification for each criterion.
+Final Score =
+  (Python Quality Delta * 0.30) +
+  (Template Quality Delta * 0.20) +
+  (Prompt Efficiency * 0.15) +
+  (Explanation Clarity * 0.15) +
+  (Task Efficiency * 0.20)
 ```
 
-## Evaluation Process
+Example:
 
-1. **Initial Setup**
-   - Clone base project
-   - Set up test environment
-   - Prepare evaluation checklist
-
-2. **Task Implementation**
-   - Record number of prompts
-   - Track code changes
-   - Document UI/UX decisions
-
-3. **Testing**
-   - Run automated tests
-   - Document test results
-   - Record edge case handling
-
-4. **Evaluation**
-   - Calculate automated metrics
-   - Complete manual checklist
-   - Get LLM-as-judge evaluation
-
-## Scoring System
-
-### Automated Score (60%)
-
-- Code Quality (30%)
-  - Unit tests (15%)
-  - Integration tests (15%)
-- Functionality (30%)
-  - Core features (15%)
-  - Edge cases (15%)
-
-### Manual Score (40%)
-
-- Developer Experience (20%)
-  - Number of prompts (10%)
-  - LLM-as-judge evaluation (10%)
-- UI/UX Implementation (20%)
-  - Task completion efficiency (10%)
-  - Edge case handling (10%)
+- Python Quality Delta: 2.75/10 * 0.30 = 0.83
+- Template Quality Delta: 8/10 * 0.20 = 1.60
+- Prompt Efficiency: 8/10 * 0.15 = 1.20
+- Explanation Clarity: 8/10 * 0.15 = 1.20
+- Task Efficiency: 6.75/10 * 0.20 = 1.35
+- Total Score: 6.18/10
 
 ## Results Template
 
@@ -219,22 +136,25 @@ Project: Law Firm Document Management
 LLM: [Claude 3.7/Gemini Pro 2.5]
 Date: [Date]
 
-Automated Metrics:
-- Unit Test Coverage: ___%
-- Integration Test Coverage: ___%
-- Code Complexity Score: ___
-- Template Complexity Score: ___
-- Integration Test Pass Rate: ___%
+Python Code Quality Delta: ___/10 (30%)
+- Coverage Delta: ___%
+- Pylint Score Delta: ___/10
+- New Failed Tests: ___
 
-Manual Metrics:
-- Number of Prompts: ___
-- Code Explanation Clarity: ___/5
-- Implementation Approach: ___/5
-- Error Handling Quality: ___/5
-- Clicks to Complete: ___
-- Edge Case Handling: ___/5
+Template Quality Delta: ___/10 (20%)
+- Issues Delta: ___
 
-Final Score: ___/100
+Prompt Efficiency: ___/10 (15%)
+- Number of Prompts: ___ (lower is better)
+
+Explanation Clarity: ___/10 (15%)
+- LLM-as-Judge Score: ___/5
+
+Task Efficiency: ___/10 (20%)
+- Field Efficiency Ratio: ___ (closer to 1.0 is better)
+- Number of Form Submissions: ___ (lower is better)
+
+Final Score: ___/10
 ```
 
 ## Time Allocation (6 hours)
