@@ -16,9 +16,9 @@ Verbatim from elearn:
 > The topic is a good one. What I would like to add to it is a quantitative way to assess the results for each of the tasks x LLM. If the output of the code is correct? Any other metrics for evaluation? If it is a UI for example, is "correct" easy to define? Point being to think about the EVALUATION of it as well as setting up the tasks themselves
 
 
-From: SIM Kim Sia <kimsia.sim.2024@mitb.smu.edu.sg>
+From: SIM Kim Sia <xx.xx>
 Sent: Thursday, May 15, 2025 12:51 PM
-To: WYNTER Laura <lwynter@smu.edu.sg>
+To: WYNTER Laura <xx.xx>
 Subject: Evaluation assignment
 
 > On a different topic, I am checking directionally, if the following evaluation for the individual assignment is acceptable.
