@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+
+{% block title %}{{ document.title }} - Law Firm Docs{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <div class="row">
+        <div class="col-md-8">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">{{ document.title }}</li>
+                </ol>
+            </nav>
+
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h2 class="mb-0">{{ document.title }}</h2>
+                    {% if document.is_confidential %}
+                    <span class="badge bg-danger">Confidential</span>
+                    {% endif %}
+                </div>
+                <div class="card-body">
+                    <div class="mb-4">
+                        <h5>Document Information</h5>
+                        <dl class="row">
+                            <dt class="col-sm-3">Type</dt>
+                            <dd class="col-sm-9">{{ document.get_document_type_display }}</dd>
+
+                            <dt class="col-sm-3">Client</dt>
+                            <dd class="col-sm-9">
+                                <a href="#" class="text-decoration-none">{{ document.client.name }}</a>
+                                <small class="text-muted">(Ref: {{ document.client.reference_number }})</small>
+                            </dd>
+
+                            <dt class="col-sm-3">Created</dt>
+                            <dd class="col-sm-9">{{ document.created_at|date:"F j, Y" }}</dd>
+
+                            <dt class="col-sm-3">Created By</dt>
+                            <dd class="col-sm-9">{{ document.created_by.username }}</dd>
+
+                            {% if document.tags %}
+                            <dt class="col-sm-3">Tags</dt>
+                            <dd class="col-sm-9">
+                                {% for tag in document.tags.split %}
+                                <span class="badge bg-secondary me-1">{{ tag }}</span>
+                                {% endfor %}
+                            </dd>
+                            {% endif %}
+                        </dl>
+                    </div>
+
+                    {% if document.description %}
+                    <div class="mb-4">
+                        <h5>Description</h5>
+                        <p class="text-muted">{{ document.description }}</p>
+                    </div>
+                    {% endif %}
+
+                    <div class="mb-4">
+                        <h5>Document</h5>
+                        {% if document.file %}
+                        <div class="d-flex align-items-center">
+                            <i class="bi bi-file-earmark-text fs-4 me-2"></i>
+                            <a href="{{ document.file.url }}" class="btn btn-primary" target="_blank">
+                                View Document
+                            </a>
+                        </div>
+                        {% else %}
+                        <p class="text-muted">No file attached</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">Client Information</h5>
+                </div>
+                <div class="card-body">
+                    <dl class="row mb-0">
+                        <dt class="col-sm-4">Name</dt>
+                        <dd class="col-sm-8">{{ document.client.name }}</dd>
+
+                        <dt class="col-sm-4">Reference</dt>
+                        <dd class="col-sm-8">{{ document.client.reference_number }}</dd>
+
+                        {% if document.client.email %}
+                        <dt class="col-sm-4">Email</dt>
+                        <dd class="col-sm-8">{{ document.client.email }}</dd>
+                        {% endif %}
+
+                        {% if document.client.phone %}
+                        <dt class="col-sm-4">Phone</dt>
+                        <dd class="col-sm-8">{{ document.client.phone }}</dd>
+                        {% endif %}
+
+                        {% if document.client.address %}
+                        <dt class="col-sm-4">Address</dt>
+                        <dd class="col-sm-8">{{ document.client.address }}</dd>
+                        {% endif %}
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+{% endblock %}
